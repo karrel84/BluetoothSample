@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.karrel.bluetoothsample">
+
+    <!-- connection 요구 connection accept, 데이터 전송 등의 bt통신 기능을 사용하려면 블루투스 퍼미션이 필요하다-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!-- device discovery, BT 설정을 조작하려면 BLUETOOTH_ADMIN 퍼미션이 필요하다 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- ble 를 이용하기위해서 위치기반 관련 권한이 필요하다 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".view.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.DeviceListActivity"></activity>
+    </application>
+
+</manifest>

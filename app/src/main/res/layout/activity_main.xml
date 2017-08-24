@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.karrel.bluetoothsample.view.MainActivity">
+
+        <Button
+            android:id="@+id/bluetoothList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="블루투스 리스트" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
