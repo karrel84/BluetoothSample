@@ -14,6 +14,7 @@ import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ActivityDeviceListBinding;
+import com.karrel.bluetoothsample.etc.RxEvent;
 import com.karrel.bluetoothsample.presenter.DeviceListPresenter;
 import com.karrel.bluetoothsample.presenter.DeviceListPresenterImpl;
 import com.karrel.bluetoothsample.view.adapter.PairedAdapter;
@@ -23,6 +24,8 @@ import com.karrel.mylibrary.RLog;
 
 import java.util.ArrayList;
 import java.util.Set;
+
+import rx.functions.Action1;
 
 public class DeviceListActivity extends AppCompatActivity implements DeviceListPresenter.View {
 
@@ -47,6 +50,21 @@ public class DeviceListActivity extends AppCompatActivity implements DeviceListP
 
         // create presenter
         createPresenter();
+
+        // setup rx event
+        setupRxEvent();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.startScan();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.stopScan();
     }
 
     private void setupScanRecyclerView() {
@@ -116,5 +134,16 @@ public class DeviceListActivity extends AppCompatActivity implements DeviceListP
             RLog.d("resultCode > " + resultCode);
             presenter.onResultEnableBt(resultCode);
         }
+    }
+
+    private void setupRxEvent() {
+        RxEvent.getInstance().getObservable().subscribe(new Action1<Object>() {
+            @Override
+            public void call(Object o) {
+                if (o instanceof BluetoothDevice) {
+                    finish();
+                }
+            }
+        });
     }
 }

@@ -105,7 +105,8 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
         return btAdapter.isEnabled();
     }
 
-    private void startScan() {
+    public void startScan() {
+        if (mScanning) return;
         mScanning = true;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             bleScanner.startScan(mScanCallback);
@@ -114,7 +115,8 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
         }
     }
 
-    private void stopScan() {
+    public void stopScan() {
+        if (!mScanning) return;
         RLog.d("stopScan");
 
         mScanning = false;

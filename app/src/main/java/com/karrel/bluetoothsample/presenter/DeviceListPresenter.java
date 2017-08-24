@@ -19,6 +19,10 @@ public interface DeviceListPresenter {
 
     void onResultEnableBt(int resultCode);
 
+    void startScan();
+
+    void stopScan();
+
     interface View {
 
         void showToast(String s);
