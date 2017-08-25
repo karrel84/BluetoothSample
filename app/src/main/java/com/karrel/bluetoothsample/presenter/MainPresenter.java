@@ -9,7 +9,18 @@ import android.bluetooth.BluetoothDevice;
 public interface MainPresenter {
     void connectBt(BluetoothDevice device);
 
+    void sendMessage(String message);
+
+    void startBt();
+
+    void stopBt();
+
     interface View {
 
+        void connectedDevice(String mConnectedDeviceName);
+
+        void setSatus(String s);
+
+        void readMessage(String readMessage);
     }
 }

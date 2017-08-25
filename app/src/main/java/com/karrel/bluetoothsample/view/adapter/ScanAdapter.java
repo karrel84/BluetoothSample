@@ -12,9 +12,7 @@ import com.karrel.bluetoothsample.view.adapter.viewholder.ScanViewHolder;
 import com.karrel.mylibrary.RLog;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Rell on 2017. 8. 24..
@@ -22,11 +20,9 @@ import java.util.Set;
 
 public class ScanAdapter extends RecyclerView.Adapter<ScanViewHolder> {
     private List<BluetoothDevice> list;
-    private Set<BluetoothDevice> set;
 
     public ScanAdapter() {
         list = new ArrayList<>();
-        set = new HashSet<>();
 
     }
 
@@ -49,8 +45,7 @@ public class ScanAdapter extends RecyclerView.Adapter<ScanViewHolder> {
 
     public void addData(BluetoothDevice device) {
         RLog.e(String.format("device > %s, %s", device.getName(), device.getAddress()));
-        set.add(device);
-        list = new ArrayList<>(set);
-        notifyDataSetChanged();
+        list.add(device);
+        notifyItemRangeInserted(list.size(), 1);
     }
 }

@@ -7,19 +7,18 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ActivityDeviceListBinding;
-import com.karrel.bluetoothsample.etc.RxEvent;
+import com.karrel.bluetoothsample.etc.RxConnectEvent;
+import com.karrel.bluetoothsample.etc.RxParingEvent;
 import com.karrel.bluetoothsample.presenter.DeviceListPresenter;
 import com.karrel.bluetoothsample.presenter.DeviceListPresenterImpl;
 import com.karrel.bluetoothsample.view.adapter.PairedAdapter;
 import com.karrel.bluetoothsample.view.adapter.ScanAdapter;
-import com.karrel.bluetoothsample.view.adapter.viewholder.ScanViewHolder;
 import com.karrel.mylibrary.RLog;
 
 import java.util.ArrayList;
@@ -52,7 +51,10 @@ public class DeviceListActivity extends AppCompatActivity implements DeviceListP
         createPresenter();
 
         // setup rx event
-        setupRxEvent();
+        setupConnectEvent();
+
+        // setup rx connext event
+        setupPairingEvent();
     }
 
     @Override
@@ -136,8 +138,24 @@ public class DeviceListActivity extends AppCompatActivity implements DeviceListP
         }
     }
 
-    private void setupRxEvent() {
-        RxEvent.getInstance().getObservable().subscribe(new Action1<Object>() {
+    /**
+     * 스캔된 블루투스 목록에서 클릭하여 전달되는 데이터들을 받아온다.
+     */
+    private void setupPairingEvent() {
+        RxParingEvent.getInstance().getObservable().subscribe(new Action1<BluetoothDevice>() {
+            @Override
+            public void call(BluetoothDevice device) {
+                RLog.e("device : " + device.getName());
+                presenter.pairingDevice(DeviceListActivity.this, device);
+            }
+        });
+    }
+
+    /**
+     * 블루투스 연결을 위한 이벤트가 들어오면 선택 액티비티를 종료한다.
+     */
+    private void setupConnectEvent() {
+        RxConnectEvent.getInstance().getObservable().subscribe(new Action1<Object>() {
             @Override
             public void call(Object o) {
                 if (o instanceof BluetoothDevice) {

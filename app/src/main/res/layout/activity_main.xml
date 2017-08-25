@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.constraint.ConstraintLayout
@@ -12,6 +13,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="블루투스 리스트" />
+
+        <TextView
+            android:id="@+id/log"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bluetoothList" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

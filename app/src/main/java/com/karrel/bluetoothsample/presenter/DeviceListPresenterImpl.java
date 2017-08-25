@@ -7,18 +7,20 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
+import android.content.Context;
 import android.os.Build;
 
+import com.karrel.bluetoothsample.bluetooth.BluetoothPairUtil;
 import com.karrel.mylibrary.RLog;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
 
 /**
  * Created by Rell on 2017. 8. 24..
@@ -30,23 +32,42 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
     private BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
     private boolean mScanning;
 
-    public DeviceListPresenterImpl(DeviceListPresenter.View view) {
-        this.view = view;
-    }
-
     private BluetoothLeScanner bleScanner;
 
     private ScanCallback mScanCallback;
 
+    private PublishSubject<BluetoothDevice> devicePublishSubject;
+
+    public DeviceListPresenterImpl(DeviceListPresenter.View view) {
+        this.view = view;
+    }
+
     @Override
     public void startBluetooth() {
         RLog.e();
+        // create subject
+        createSubject();
 
         createScanCallback();
 
         createBluetoothLeAdapter();
         // checkpermission
         checkPermission();
+
+    }
+
+    private void createSubject() {
+        devicePublishSubject = PublishSubject.create();
+        devicePublishSubject
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .distinct()
+                .subscribe(new Action1<BluetoothDevice>() {
+                    @Override
+                    public void call(BluetoothDevice device) {
+                        view.addScanedDevice(device);
+                    }
+                });
     }
 
     @Override
@@ -127,6 +148,12 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
         }
     }
 
+    @Override
+    public void pairingDevice(Context context, BluetoothDevice device) {
+        BluetoothPairUtil bluetoothPairUtil = new BluetoothPairUtil(context);
+        bluetoothPairUtil.pairDevice(device);
+    }
+
     /**
      * 블루투스 이용가능 요청
      */
@@ -167,12 +194,12 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
                 @Override
                 public void onScanResult(int callbackType, ScanResult result) {
                     processResult(result);
-                    RLog.d(".onScanResult");
+//                    RLog.d(".onScanResult");
                 }
 
                 @Override
                 public void onBatchScanResults(List<ScanResult> results) {
-                    RLog.d(".onBatchScanResults");
+//                    RLog.d(".onBatchScanResults");
                     for (ScanResult result : results) {
                         processResult(result);
                     }
@@ -184,27 +211,14 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
                 }
 
                 private void processResult(final ScanResult result) {
-                    RLog.d("processResult");
+//                    RLog.d("processResult");
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getDevice(result.getDevice())
-                                .distinct()
-                                .subscribe(new Action1<BluetoothDevice>() {
-                                    @Override
-                                    public void call(BluetoothDevice device) {
-                                        view.addScanedDevice(device);
-                                    }
-                                });
-                        RLog.d(String.format("device : %s", result.getDevice().getName()));
+                        devicePublishSubject.onNext(result.getDevice());
+//                        RLog.d(String.format("device : %s", result.getDevice().getName()));
                     }
                 }
             };
         }
-    }
-
-    private Observable<BluetoothDevice> getDevice(BluetoothDevice device) {
-        return Observable.just(device)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread());
     }
 
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
@@ -212,13 +226,7 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
 
                 @Override
                 public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
-                    getDevice(device)
-                            .subscribe(new Action1<BluetoothDevice>() {
-                                @Override
-                                public void call(BluetoothDevice device) {
-                                    view.addScanedDevice(device);
-                                }
-                            });
+                    devicePublishSubject.onNext(device);
                 }
             };
 }

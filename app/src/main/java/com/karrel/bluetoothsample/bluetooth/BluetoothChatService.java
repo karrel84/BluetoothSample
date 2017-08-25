@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.karrel.bluetoothsample.utils;
+package com.karrel.bluetoothsample.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import com.karrel.bluetoothsample.etc.Constants;
 import com.karrel.mylibrary.RLog;
 
 import java.io.IOException;
@@ -44,10 +44,14 @@ public class BluetoothChatService {
     private static final String NAME_INSECURE = "BluetoothChatInsecure";
 
     // Unique UUID for this application
+//    private static final UUID MY_UUID_SECURE =
+//            UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
     private static final UUID MY_UUID_SECURE =
-            UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
+            UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    //    private static final UUID MY_UUID_INSECURE =
+//            UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
     private static final UUID MY_UUID_INSECURE =
-            UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
+            UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     // Member fields
     private final BluetoothAdapter mAdapter;
@@ -68,12 +72,11 @@ public class BluetoothChatService {
     /**
      * Constructor. Prepares a new BluetoothChat session.
      *
-     * @param context The UI Activity Context
      * @param handler A Handler to send messages back to the UI Activity
      */
-    public BluetoothChatService(Context context, Handler handler) {
+    public BluetoothChatService(Handler handler) {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
-        mState = STATE_NONE;
+        setStatus(STATE_NONE);
         mNewState = mState;
         mHandler = handler;
     }
@@ -230,7 +233,7 @@ public class BluetoothChatService {
             mInsecureAcceptThread.cancel();
             mInsecureAcceptThread = null;
         }
-        mState = STATE_NONE;
+        setStatus(STATE_NONE);
         // Update UI title
         updateUserInterfaceTitle();
     }
@@ -264,7 +267,7 @@ public class BluetoothChatService {
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
-        mState = STATE_NONE;
+        setStatus(STATE_NONE);
         // Update UI title
         updateUserInterfaceTitle();
 
@@ -283,7 +286,7 @@ public class BluetoothChatService {
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
-        mState = STATE_NONE;
+        setStatus(STATE_NONE);
         // Update UI title
         updateUserInterfaceTitle();
 
@@ -318,7 +321,7 @@ public class BluetoothChatService {
                 RLog.e("Socket Type: " + mSocketType + "listen() failed" + e);
             }
             mmServerSocket = tmp;
-            mState = STATE_LISTEN;
+            setStatus(STATE_LISTEN);
         }
 
         public void run() {
@@ -406,7 +409,7 @@ public class BluetoothChatService {
                 RLog.e("Socket Type: " + mSocketType + "create() failed" + e);
             }
             mmSocket = tmp;
-            mState = STATE_CONNECTING;
+            setStatus(STATE_CONNECTING);
         }
 
         public void run() {
@@ -476,7 +479,7 @@ public class BluetoothChatService {
 
             mmInStream = tmpIn;
             mmOutStream = tmpOut;
-            mState = STATE_CONNECTED;
+            setStatus(STATE_CONNECTED);
         }
 
         public void run() {
@@ -525,5 +528,9 @@ public class BluetoothChatService {
                 RLog.e("close() of connect socket failed" + e);
             }
         }
+    }
+
+    private void setStatus(int state) {
+        mState = state;
     }
 }

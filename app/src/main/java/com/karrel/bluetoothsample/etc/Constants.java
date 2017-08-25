@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.karrel.bluetoothsample.utils;
+package com.karrel.bluetoothsample.etc;
+
+import com.karrel.bluetoothsample.bluetooth.BluetoothChatService;
 
 /**
  * Defines several constants used between {@link BluetoothChatService} and the UI.
