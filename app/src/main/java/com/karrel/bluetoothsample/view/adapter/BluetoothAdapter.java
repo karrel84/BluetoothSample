@@ -36,9 +36,9 @@ public class BluetoothAdapter extends RecyclerView.Adapter<ViewHolder> {
     public BluetoothAdapter() {
         list = new ArrayList<>();
         pairedItems = new ArrayList<>();
-        pairedItems.add(new TitleItem("등록된 디바이스"));
+        pairedItems.add(new TitleItem("paired devices"));
         scanedItems = new ArrayList<>();
-        scanedItems.add(new TitleItem("연결 가능한 디바이스"));
+        scanedItems.add(new TitleItem("devices seached from BLE"));
     }
 
     @Override

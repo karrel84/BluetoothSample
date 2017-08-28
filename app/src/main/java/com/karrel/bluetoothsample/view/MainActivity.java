@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.karrel.bluetoothsample.R;
@@ -30,9 +32,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         // create presenter;
         presenter = new MainPresenterImpl(this);
 
-        setupBluetoothList();
-
         setupRxEvent();
+
     }
 
     @Override
@@ -47,13 +48,20 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         presenter.stopBt();
     }
 
-    private void setupBluetoothList() {
-        binding.bluetoothList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_select_device:
                 startActivity(new Intent(MainActivity.this, DeviceListActivity.class));
-            }
-        });
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupRxEvent() {
