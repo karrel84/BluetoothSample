@@ -7,10 +7,10 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
-import android.content.Context;
 import android.os.Build;
 
-import com.karrel.bluetoothsample.bluetooth.BluetoothPairUtil;
+import com.karrel.bluetoothsample.model.PairedItem;
+import com.karrel.bluetoothsample.model.ScanedItem;
 import com.karrel.mylibrary.RLog;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
                 .subscribe(new Action1<BluetoothDevice>() {
                     @Override
                     public void call(BluetoothDevice device) {
-                        view.addScanedDevice(device);
+                        view.addBluetoothDevice(new ScanedItem(device));
                     }
                 });
     }
@@ -148,13 +148,6 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
         }
     }
 
-    @Override
-    public void pairingDevice(Context context, BluetoothDevice device) {
-        stopScan();
-        BluetoothPairUtil bluetoothPairUtil = new BluetoothPairUtil(context);
-        bluetoothPairUtil.pairDevice(device);
-    }
-
     /**
      * 블루투스 이용가능 요청
      */
@@ -171,9 +164,9 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
         Set<BluetoothDevice> pairedDevices = btAdapter.getBondedDevices();
         for (BluetoothDevice device : pairedDevices) {
             RLog.d(String.format("pairedDevice > %s : %s", device.getName(), device.getAddress()));
+            // 페어링된 리스트를 보여준다.
+            view.addBluetoothDevice(new PairedItem(device));
         }
-        // 페어링된 리스트를 보여준다.
-        view.setPairedList(pairedDevices);
     }
 
     private boolean createBluetoothLeAdapter() {

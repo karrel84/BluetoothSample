@@ -6,20 +6,20 @@ import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /**
- * Created by Rell on 2017. 8. 25..
+ * Created by Rell on 2017. 8. 24..
  */
 
-public class RxParingEvent {
-    private static RxParingEvent mInstance;
+public class RxBluetoothConnectEvent {
+    private static RxBluetoothConnectEvent mInstance;
     private PublishSubject<BluetoothDevice> mSubject;
 
-    private RxParingEvent() {
+    private RxBluetoothConnectEvent() {
         mSubject = PublishSubject.create();
     }
 
-    public static RxParingEvent getInstance() {
+    public static RxBluetoothConnectEvent getInstance() {
         if (mInstance == null) {
-            mInstance = new RxParingEvent();
+            mInstance = new RxBluetoothConnectEvent();
         }
         return mInstance;
     }

@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ActivityMainBinding;
-import com.karrel.bluetoothsample.etc.RxConnectEvent;
+import com.karrel.bluetoothsample.etc.RxBluetoothConnectEvent;
 import com.karrel.bluetoothsample.presenter.MainPresenter;
 import com.karrel.bluetoothsample.presenter.MainPresenterImpl;
 import com.karrel.mylibrary.RLog;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     private void setupRxEvent() {
-        RxConnectEvent.getInstance().getObservable().subscribe(new Action1<Object>() {
+        RxBluetoothConnectEvent.getInstance().getObservable().subscribe(new Action1<Object>() {
             @Override
             public void call(Object o) {
                 if (o instanceof BluetoothDevice) {

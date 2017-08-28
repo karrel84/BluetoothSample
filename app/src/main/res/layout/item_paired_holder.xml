@@ -3,21 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="?selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <TextView
             android:id="@+id/deviceName"
-            android:layout_width="wrap_content"
+            style="@style/baseText.ItemTextNormal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             tools:text="엘리자베스" />
 
         <TextView
             android:id="@+id/address"
-            android:layout_width="wrap_content"
+            style="@style/baseText.ItemTextSmall"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="askdjfaksjdfkajskdfjaksdkfajkdsfj" />
+            tools:text="00:00:00:00:00:00" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="4dp"
+            android:background="@color/normalTextColor"
+            android:visibility="gone" />
 
     </LinearLayout>
 

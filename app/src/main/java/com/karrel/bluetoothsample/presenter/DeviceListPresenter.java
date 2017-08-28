@@ -1,12 +1,8 @@
 package com.karrel.bluetoothsample.presenter;
 
-import android.bluetooth.BluetoothDevice;
-import android.content.Context;
-
-import com.karrel.bluetoothsample.view.DeviceListActivity;
+import com.karrel.bluetoothsample.model.BluetoothItem;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 /**
  * Created by Rell on 2017. 8. 24..
@@ -26,8 +22,6 @@ public interface DeviceListPresenter {
 
     void stopScan();
 
-    void pairingDevice(Context context, BluetoothDevice device);
-
     interface View {
 
         void showToast(String s);
@@ -38,8 +32,6 @@ public interface DeviceListPresenter {
 
         void startActionRequestEnable();
 
-        void setPairedList(Set<BluetoothDevice> pairedDevices);
-
-        void addScanedDevice(BluetoothDevice device);
+        void addBluetoothDevice(BluetoothItem item);
     }
 }

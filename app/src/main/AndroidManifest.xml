@@ -24,7 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.DeviceListActivity"></activity>
+        <activity
+            android:name=".view.DeviceListActivity"
+            android:label="@string/deviceTitle"
+            android:theme="@style/PopupTheme" />
     </application>
 
 </manifest>

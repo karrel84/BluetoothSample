@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">BluetoothSample</string>
+    <string name="app_name">bluetooth ssp</string>
+    <string name="deviceTitle">select device</string>
 </resources>

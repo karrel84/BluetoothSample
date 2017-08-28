@@ -2,6 +2,7 @@ package com.karrel.bluetoothsample.view;
 
 import android.bluetooth.BluetoothDevice;
 
+import com.karrel.bluetoothsample.model.BluetoothItem;
 import com.karrel.bluetoothsample.presenter.DeviceListPresenter;
 import com.karrel.bluetoothsample.presenter.DeviceListPresenterImpl;
 import com.karrel.mylibrary.RLog;
@@ -50,12 +51,7 @@ public class DeviceListActivityTest implements DeviceListPresenter.View {
     }
 
     @Override
-    public void setPairedList(Set<BluetoothDevice> pairedDevices) {
-
-    }
-
-    @Override
-    public void addScanedDevice(BluetoothDevice device) {
+    public void addBluetoothDevice(BluetoothItem item) {
 
     }
 }

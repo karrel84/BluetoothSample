@@ -8,4 +8,33 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="PopupTheme" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">true</item>
+    </style>
+
+    <style name="baseText">
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="baseText.title">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/h2</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="baseText.ItemTextNormal">
+        <item name="android:textSize">@dimen/h3</item>
+        <item name="android:textColor">@color/normalTextColor</item>
+    </style>
+
+    <style name="baseText.ItemTextSmall">
+        <item name="android:textSize">@dimen/h5</item>
+        <item name="android:textColor">@color/normalTextColor2</item>
+    </style>
+
 </resources>
