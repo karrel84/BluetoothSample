@@ -150,6 +150,7 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
 
     @Override
     public void pairingDevice(Context context, BluetoothDevice device) {
+        stopScan();
         BluetoothPairUtil bluetoothPairUtil = new BluetoothPairUtil(context);
         bluetoothPairUtil.pairDevice(device);
     }
