@@ -1,8 +1,6 @@
 package com.karrel.bluetoothsample.event;
 
-import android.bluetooth.BluetoothDevice;
-
-import com.karrel.bluetoothsample.model.RxAddWriteItem;
+import com.karrel.bluetoothsample.model.ProtocolItem;
 
 import rx.Observable;
 import rx.subjects.PublishSubject;
@@ -13,7 +11,7 @@ import rx.subjects.PublishSubject;
 
 public class RxWriteButtonEvent {
     private static RxWriteButtonEvent mInstance;
-    private PublishSubject<RxAddWriteItem> mSubject;
+    private PublishSubject<ProtocolItem> mSubject;
 
     private RxWriteButtonEvent() {
         mSubject = PublishSubject.create();
@@ -26,11 +24,11 @@ public class RxWriteButtonEvent {
         return mInstance;
     }
 
-    public void sendEvent(RxAddWriteItem device) {
+    public void sendEvent(ProtocolItem device) {
         mSubject.onNext(device);
     }
 
-    public Observable<RxAddWriteItem> getObservable() {
+    public Observable<ProtocolItem> getObservable() {
         return mSubject;
     }
 }

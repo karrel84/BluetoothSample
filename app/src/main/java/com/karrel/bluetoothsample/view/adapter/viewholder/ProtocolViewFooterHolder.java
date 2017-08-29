@@ -4,17 +4,16 @@ import android.view.View;
 
 import com.karrel.bluetoothsample.databinding.ItemWriteViewFooterBinding;
 import com.karrel.bluetoothsample.event.RxWriteButtonEvent;
-import com.karrel.bluetoothsample.model.RxAddWriteItem;
 
 /**
  * Created by jylee on 2017. 8. 29..
  */
 
-public class WriteViewFooterHolder extends WriteViewHolder {
+public class ProtocolViewFooterHolder extends ProtocolViewHolder {
 
     private ItemWriteViewFooterBinding binding;
 
-    public WriteViewFooterHolder(ItemWriteViewFooterBinding binding) {
+    public ProtocolViewFooterHolder(ItemWriteViewFooterBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
 

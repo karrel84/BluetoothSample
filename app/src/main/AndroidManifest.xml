@@ -31,7 +31,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/PopupTheme" />
         <activity
-            android:name=".view.WriteItemActivity"
+            android:name=".view.CreateProtocolActivity"
             android:screenOrientation="portrait"
             android:theme="@style/PopupTheme" />
     </application>

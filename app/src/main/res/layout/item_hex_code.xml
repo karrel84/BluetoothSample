@@ -1,53 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/byte_box_layout_size">
 
-        <include
-            android:id="@+id/item1"
-            layout="@layout/item_byte_layout" />
 
-        <include
-            android:id="@+id/item2"
-            layout="@layout/item_byte_layout" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
 
-        <include
-            android:id="@+id/item3"
-            layout="@layout/item_byte_layout" />
+            <TextView
+                android:id="@+id/number1"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
 
-        <include
-            android:id="@+id/item4"
-            layout="@layout/item_byte_layout" />
+            <EditText
+                android:id="@+id/value1"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
 
-        <include
-            android:id="@+id/item5"
-            layout="@layout/item_byte_layout" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/number2"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
+
+            <EditText
+                android:id="@+id/value2"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/number3"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
+
+            <EditText
+                android:id="@+id/value3"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/number4"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
+
+            <EditText
+                android:id="@+id/value4"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/number5"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
+
+            <EditText
+                android:id="@+id/value5"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
 
         <View
             android:layout_width="16dp"
             android:layout_height="wrap_content" />
 
-        <include
-            android:id="@+id/item6"
-            layout="@layout/item_byte_layout" />
 
-        <include
-            android:id="@+id/item7"
-            layout="@layout/item_byte_layout" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
 
-        <include
-            android:id="@+id/item8"
-            layout="@layout/item_byte_layout" />
+            <TextView
+                android:id="@+id/number6"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
 
-        <include
-            android:id="@+id/item9"
-            layout="@layout/item_byte_layout" />
+            <EditText
+                android:id="@+id/value6"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
 
-        <include
-            android:id="@+id/item10"
-            layout="@layout/item_byte_layout" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/number7"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
+
+            <EditText
+                android:id="@+id/value7"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/number8"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
+
+            <EditText
+                android:id="@+id/value8"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/number9"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
+
+            <EditText
+                android:id="@+id/value9"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/byte_box_layout_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/number10"
+                style="@style/baseText.byteBox"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                tools:text="0" />
+
+            <EditText
+                android:id="@+id/value10"
+                style="@style/baseText.byteContent"
+                android:layout_width="@dimen/byte_box_size"
+                android:layout_height="@dimen/byte_box_size"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:text="AC" />
+        </LinearLayout>
+
 
     </LinearLayout>
 </layout>

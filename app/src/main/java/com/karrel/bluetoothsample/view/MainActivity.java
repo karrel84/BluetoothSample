@@ -19,7 +19,7 @@ import com.karrel.bluetoothsample.model.ReadDataItem;
 import com.karrel.bluetoothsample.presenter.MainPresenter;
 import com.karrel.bluetoothsample.presenter.MainPresenterImpl;
 import com.karrel.bluetoothsample.view.adapter.ReadDataAdapter;
-import com.karrel.bluetoothsample.view.adapter.WriteDataAdapter;
+import com.karrel.bluetoothsample.view.adapter.ProtocolAdapter;
 import com.karrel.mylibrary.RLog;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     private ActivityMainBinding binding;
     private MainPresenter presenter;
     private ReadDataAdapter readDataAdapter;
-    private WriteDataAdapter writeDataAdapter;
+    private ProtocolAdapter writeDataAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     private void setupWriteView() {
-        writeDataAdapter = new WriteDataAdapter();
-        binding.writeView.setLayoutManager(new LinearLayoutManager(this));
-        binding.writeView.setAdapter(writeDataAdapter);
+        writeDataAdapter = new ProtocolAdapter();
+        binding.protocolRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.protocolRecyclerView.setAdapter(writeDataAdapter);
 
         presenter.loadWriteButtonData();
     }
@@ -159,8 +159,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     @Override
-    public void showWriteLayout() {
-        binding.writeLayout.setVisibility(View.VISIBLE);
+    public void showProtocolLayout() {
+        binding.protocolLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     @Override
     public void startWriteItemActivity() {
-        startActivity(new Intent(this, WriteItemActivity.class));
+        startActivity(new Intent(this, CreateProtocolActivity.class));
     }
 
     private void addLog(String message) {

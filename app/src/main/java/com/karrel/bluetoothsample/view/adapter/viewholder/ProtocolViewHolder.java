@@ -8,10 +8,10 @@ import com.karrel.bluetoothsample.databinding.ItemWriteViewBinding;
 /**
  * Created by jylee on 2017. 8. 29..
  */
-public class WriteViewHolder extends RecyclerView.ViewHolder {
+public class ProtocolViewHolder extends RecyclerView.ViewHolder {
 
 
-    public WriteViewHolder(View itemView) {
+    public ProtocolViewHolder(View itemView) {
         super(itemView);
     }
 }

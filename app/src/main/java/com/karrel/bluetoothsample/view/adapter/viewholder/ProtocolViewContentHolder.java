@@ -6,10 +6,10 @@ import com.karrel.bluetoothsample.databinding.ItemWriteViewBinding;
  * Created by jylee on 2017. 8. 29..
  */
 
-public class WriteViewContentHolder extends WriteViewHolder {
+public class ProtocolViewContentHolder extends ProtocolViewHolder {
     private ItemWriteViewBinding binding;
 
-    public WriteViewContentHolder(ItemWriteViewBinding binding) {
+    public ProtocolViewContentHolder(ItemWriteViewBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }

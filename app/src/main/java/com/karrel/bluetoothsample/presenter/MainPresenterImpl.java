@@ -9,17 +9,12 @@ import com.karrel.bluetoothsample.etc.Constants;
 import com.karrel.bluetoothsample.event.RxWriteButtonEvent;
 import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
 import com.karrel.bluetoothsample.model.ReadDataItem;
-import com.karrel.bluetoothsample.model.RxAddWriteItem;
-import com.karrel.bluetoothsample.model.WriteDataItem;
+import com.karrel.bluetoothsample.model.ProtocolItem;
 import com.karrel.bluetoothsample.util.ByteConverter;
 import com.karrel.mylibrary.RLog;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Queue;
-import java.util.Set;
 
 import rx.functions.Action1;
 
@@ -47,9 +42,9 @@ public class MainPresenterImpl implements MainPresenter {
      */
     private void setupAddWriteButtonEvent() {
         RxWriteButtonEvent.getInstance().getObservable()
-                .subscribe(new Action1<RxAddWriteItem>() {
+                .subscribe(new Action1<ProtocolItem>() {
                     @Override
-                    public void call(RxAddWriteItem rxAddWriteItem) {
+                    public void call(ProtocolItem rxAddWriteItem) {
                         view.startWriteItemActivity();
                     }
                 });
@@ -119,7 +114,7 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void clickSendButton() {
-        view.showWriteLayout();
+        view.showProtocolLayout();
     }
 
     @Override

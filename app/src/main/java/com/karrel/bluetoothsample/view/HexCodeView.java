@@ -47,15 +47,15 @@ public class HexCodeView extends LinearLayout {
     public void setHexIndex(int hexIndex) {
         this.hexIndex = hexIndex;
 
-        binding.item1.number.setText(++hexIndex + "");
-        binding.item2.number.setText(++hexIndex + "");
-        binding.item3.number.setText(++hexIndex + "");
-        binding.item4.number.setText(++hexIndex + "");
-        binding.item5.number.setText(++hexIndex + "");
-        binding.item6.number.setText(++hexIndex + "");
-        binding.item7.number.setText(++hexIndex + "");
-        binding.item8.number.setText(++hexIndex + "");
-        binding.item9.number.setText(++hexIndex + "");
-        binding.item10.number.setText(++hexIndex + "");
+        binding.number1.setText(++hexIndex + "");
+        binding.number2.setText(++hexIndex + "");
+        binding.number3.setText(++hexIndex + "");
+        binding.number4.setText(++hexIndex + "");
+        binding.number5.setText(++hexIndex + "");
+        binding.number6.setText(++hexIndex + "");
+        binding.number7.setText(++hexIndex + "");
+        binding.number8.setText(++hexIndex + "");
+        binding.number9.setText(++hexIndex + "");
+        binding.number10.setText(++hexIndex + "");
     }
 }

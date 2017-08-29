@@ -9,9 +9,9 @@ import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ItemWriteViewBinding;
 import com.karrel.bluetoothsample.databinding.ItemWriteViewFooterBinding;
 import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
-import com.karrel.bluetoothsample.view.adapter.viewholder.WriteViewContentHolder;
-import com.karrel.bluetoothsample.view.adapter.viewholder.WriteViewFooterHolder;
-import com.karrel.bluetoothsample.view.adapter.viewholder.WriteViewHolder;
+import com.karrel.bluetoothsample.view.adapter.viewholder.ProtocolViewContentHolder;
+import com.karrel.bluetoothsample.view.adapter.viewholder.ProtocolViewFooterHolder;
+import com.karrel.bluetoothsample.view.adapter.viewholder.ProtocolViewHolder;
 
 import java.util.List;
 
@@ -19,14 +19,14 @@ import java.util.List;
  * Created by jylee on 2017. 8. 29..
  */
 
-public class WriteDataAdapter extends RecyclerView.Adapter<WriteViewHolder> {
+public class ProtocolAdapter extends RecyclerView.Adapter<ProtocolViewHolder> {
     private List<ButtonWriteDataItem> data;
 
     private final int TYPE_CONTENT = 0;
     private final int TYPE_FOOTER = 1;
 
     @Override
-    public WriteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProtocolViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_CONTENT) {
             ItemWriteViewBinding binding =
                     DataBindingUtil.inflate(LayoutInflater.from(parent.getContext())
@@ -34,7 +34,7 @@ public class WriteDataAdapter extends RecyclerView.Adapter<WriteViewHolder> {
                             , parent
                             , false
                     );
-            return new WriteViewContentHolder(binding);
+            return new ProtocolViewContentHolder(binding);
         } else {
             ItemWriteViewFooterBinding binding =
                     DataBindingUtil
@@ -43,12 +43,12 @@ public class WriteDataAdapter extends RecyclerView.Adapter<WriteViewHolder> {
                                     , parent
                                     , false
                             );
-            return new WriteViewFooterHolder(binding);
+            return new ProtocolViewFooterHolder(binding);
         }
     }
 
     @Override
-    public void onBindViewHolder(WriteViewHolder holder, int position) {
+    public void onBindViewHolder(ProtocolViewHolder holder, int position) {
 
     }
 

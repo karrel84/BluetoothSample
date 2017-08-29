@@ -6,22 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.karrel.bluetoothsample.R;
-import com.karrel.bluetoothsample.databinding.ActivityWriteItemBinding;
-import com.karrel.bluetoothsample.presenter.WriteItemPresenter;
-import com.karrel.bluetoothsample.presenter.WriteItemPresenterImpl;
+import com.karrel.bluetoothsample.databinding.ActivityCreateProtocolBinding;
+import com.karrel.bluetoothsample.presenter.CreateProtocolPresenter;
+import com.karrel.bluetoothsample.presenter.CreateProtocolPresenterImpl;
 
-public class WriteItemActivity extends AppCompatActivity implements WriteItemPresenter.View {
+public class CreateProtocolActivity extends AppCompatActivity implements CreateProtocolPresenter.View {
 
-    private ActivityWriteItemBinding binding;
+    private ActivityCreateProtocolBinding binding;
 
-    private WriteItemPresenter presenter;
+    private CreateProtocolPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_write_item);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_create_protocol);
 
-        presenter = new WriteItemPresenterImpl(this);
+        presenter = new CreateProtocolPresenterImpl(this);
         presenter.addHexLayout();
 
         setupAddEvent();

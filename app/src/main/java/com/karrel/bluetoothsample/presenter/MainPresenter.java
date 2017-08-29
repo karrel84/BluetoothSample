@@ -40,7 +40,7 @@ public interface MainPresenter {
 
         void clearData();
 
-        void showWriteLayout();
+        void showProtocolLayout();
 
         void setButtonWriteData(List<ButtonWriteDataItem> writeDataItems);
 
