@@ -28,6 +28,8 @@ public class MainPresenterImpl implements MainPresenter {
 
     private String mConnectedDeviceName = null;
 
+    private boolean fixedToggle = false;
+
     public MainPresenterImpl(MainPresenter.View view) {
         this.view = view;
     }
@@ -84,6 +86,21 @@ public class MainPresenterImpl implements MainPresenter {
         }
     }
 
+    @Override
+    public void onCheckedChangeToggle(boolean b) {
+        fixedToggle = b;
+    }
+
+    @Override
+    public void clearData() {
+        view.clearData();
+    }
+
+    @Override
+    public void clickSendButton() {
+        view.showWriteLayout();
+    }
+
 
     /**
      * The Handler that gets information byte_box from the BluetoothChatService
@@ -119,6 +136,7 @@ public class MainPresenterImpl implements MainPresenter {
                     byte[] readBuf = (byte[]) msg.obj;
                     ReadDataItem readDataItem = new ReadDataItem(createByteList(readBuf));
                     view.readMessage(readDataItem);
+                    if (fixedToggle) view.scrollToTop();
 //                    RLog.d("readMessage : " + readMessage);
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:

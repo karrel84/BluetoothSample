@@ -35,6 +35,7 @@ dependencies {
     compile 'gun0912.ted:tedpermission:2.0.0'
     compile 'com.android.support:recyclerview-v7:25.0.+'
     compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.android.support:design:25.+'
 
     testCompile 'junit:junit:4.12'
 }

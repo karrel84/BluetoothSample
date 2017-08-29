@@ -19,6 +19,12 @@ public interface MainPresenter {
 
     void stopBt();
 
+    void onCheckedChangeToggle(boolean b);
+
+    void clearData();
+
+    void clickSendButton();
+
     interface View {
 
         void connectedDevice(String mConnectedDeviceName);
@@ -26,5 +32,11 @@ public interface MainPresenter {
         void setSatus(String s);
 
         void readMessage(ReadDataItem readMessage);
+
+        void scrollToTop();
+
+        void clearData();
+
+        void showWriteLayout();
     }
 }

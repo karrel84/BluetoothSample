@@ -92,7 +92,7 @@ public class ByteBoxView extends View {
             drawCountBox(canvas, left, top, right, bottom);
             drawContentBox(canvas, left, top + itemSize + 2, right, bottom + itemSize + 2);
 
-            drawCountText(canvas, i, left, bottom);
+            drawCountText(canvas, i + 1, left, bottom);
             drawContentText(canvas, i, left, bottom + itemSize + 2);
 
             column++;

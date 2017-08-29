@@ -46,4 +46,9 @@ public class ReadDataAdapter extends RecyclerView.Adapter<ReadDataHolder> {
         list.add(0, item);
         notifyItemRangeInserted(0, 1);
     }
+
+    public void clearData() {
+        notifyItemRangeRemoved(0, list.size());
+        list.clear();
+    }
 }
