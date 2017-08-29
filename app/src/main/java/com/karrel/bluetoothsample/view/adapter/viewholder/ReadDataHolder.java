@@ -2,11 +2,14 @@ package com.karrel.bluetoothsample.view.adapter.viewholder;
 
 import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ItemByteLayoutBinding;
 import com.karrel.bluetoothsample.model.ReadDataItem;
+import com.karrel.mylibrary.RLog;
 
 /**
  * Created by Rell on 2017. 8. 29..
@@ -22,6 +25,7 @@ public class ReadDataHolder extends ViewHolder {
     }
 
     public void setData(ReadDataItem readDataItem) {
+//        RLog.d(readDataItem.toString());
         this.readDataItem = readDataItem;
 
         setupLayout();
@@ -29,17 +33,16 @@ public class ReadDataHolder extends ViewHolder {
 
     private void setupLayout() {
         int count = 0;
-        LinearLayout layout = new LinearLayout(this.layout.getContext());
-        while (readDataItem.queue.isEmpty()) {
+        this.layout.removeAllViews();
+
+        LinearLayout linearLayout = new LinearLayout(layout.getContext());
+        this.layout.addView(linearLayout);
+        for (int i = 0; i < readDataItem.list.size(); i++) {
             ItemByteLayoutBinding binding = createItemBinding();
-            binding.number.setText(count + "");
-            binding.value.setText(readDataItem.queue.poll());
-            layout.addView(binding.getRoot());
-
-            count++;
+            binding.number.setText(i + "");
+            binding.value.setText(readDataItem.list.get(i));
+            linearLayout.addView(binding.getRoot());
         }
-
-        this.layout.addView(layout);
     }
 
     private ItemByteLayoutBinding createItemBinding() {

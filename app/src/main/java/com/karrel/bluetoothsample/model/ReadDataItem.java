@@ -1,15 +1,16 @@
 package com.karrel.bluetoothsample.model;
 
-import java.util.Queue;
+import java.util.List;
 
 /**
  * Created by Rell on 2017. 8. 29..
  */
 
 public class ReadDataItem {
-    public Queue<String> queue;
+    public List<String> list;
 
-    public ReadDataItem(Queue<String> queue) {
-        this.queue = queue;
+    public ReadDataItem(List<String> list) {
+        this.list = list;
     }
+
 }

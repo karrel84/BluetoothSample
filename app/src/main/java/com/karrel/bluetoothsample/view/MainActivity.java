@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     @Override
     public void readMessage(ReadDataItem item) {
         ReadDataAdapter.addItem(item);
-        RLog.e("readMessage : " + item.queue);
+//        RLog.e("readMessage : " + item.queue);
     }
 
     private void addLog(String message) {

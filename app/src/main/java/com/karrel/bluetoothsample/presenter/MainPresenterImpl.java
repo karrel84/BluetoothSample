@@ -11,6 +11,8 @@ import com.karrel.bluetoothsample.util.ByteConverter;
 import com.karrel.mylibrary.RLog;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -114,8 +116,7 @@ public class MainPresenterImpl implements MainPresenter {
                     break;
                 case Constants.MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
-                    Queue<String> queue = createByteQueue(readBuf);
-                    ReadDataItem readDataItem = new ReadDataItem(queue);
+                    ReadDataItem readDataItem = new ReadDataItem(createByteList(readBuf));
                     view.readMessage(readDataItem);
 //                    RLog.d("readMessage : " + readMessage);
                     break;
@@ -131,7 +132,7 @@ public class MainPresenterImpl implements MainPresenter {
         }
     };
 
-    private Queue<String> createByteQueue(byte[] readBuf) {
+    private List<String> createByteList(byte[] readBuf) {
         // construct a string from the valid bytes in the buffer
         String readMessage = ByteConverter.byteArrayToHexString(readBuf);
         // 뒤에 0은 모두 지운다.
@@ -139,11 +140,11 @@ public class MainPresenterImpl implements MainPresenter {
 
         byte[] bytes = ByteConverter.hexToByteArray(readMessage);
 
-        Queue<String> queue = new ArrayDeque<>();
+        List<String> list = new ArrayList<>();
         for (byte b : bytes) {
-            queue.add(ByteConverter.byteToHex(b));
+            list.add(ByteConverter.byteToHex(b));
         }
 
-        return queue;
+        return list;
     }
 }
