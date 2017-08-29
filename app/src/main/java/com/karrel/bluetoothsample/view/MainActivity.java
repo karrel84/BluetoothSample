@@ -54,9 +54,15 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        presenter.stopBt();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.stopBt();
+//        presenter.stopBt();
     }
 
     @Override
@@ -104,11 +110,12 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     @Override
     public void readMessage(ReadDataItem item) {
         ReadDataAdapter.addItem(item);
-//        RLog.e("readMessage : " + item.queue);
+        RLog.e("readMessage : " + item.list);
     }
 
     private void addLog(String message) {
-        String text = binding.log.getText().toString();
-        binding.log.setText(message + "\n" + text);
+        RLog.e(message);
+//        String text = binding.log.getText().toString();
+//        binding.log.setText(message + "\n" + text);
     }
 }
