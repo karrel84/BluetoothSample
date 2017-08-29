@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/add"
+            style="@style/baseText.ItemTextNormal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="프로토콜 추가" />
+
+    </LinearLayout>
+
+</layout>

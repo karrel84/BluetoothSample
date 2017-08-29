@@ -9,5 +9,6 @@
 
 
     <!-- byte layout size -->
-    <dimen name="byte_box_size">20dp</dimen>
+    <dimen name="byte_box_size">28dp</dimen>
+    <dimen name="byte_box_layout_size">56dp</dimen>
 </resources>

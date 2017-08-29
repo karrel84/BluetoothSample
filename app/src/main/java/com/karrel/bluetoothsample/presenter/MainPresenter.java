@@ -2,9 +2,10 @@ package com.karrel.bluetoothsample.presenter;
 
 import android.bluetooth.BluetoothDevice;
 
+import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
 import com.karrel.bluetoothsample.model.ReadDataItem;
 
-import java.util.Queue;
+import java.util.List;
 
 /**
  * Created by Rell on 2017. 8. 24..
@@ -25,6 +26,8 @@ public interface MainPresenter {
 
     void clickSendButton();
 
+    void loadWriteButtonData();
+
     interface View {
 
         void connectedDevice(String mConnectedDeviceName);
@@ -38,5 +41,9 @@ public interface MainPresenter {
         void clearData();
 
         void showWriteLayout();
+
+        void setButtonWriteData(List<ButtonWriteDataItem> writeDataItems);
+
+        void startWriteItemActivity();
     }
 }

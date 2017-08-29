@@ -13,12 +13,16 @@ import android.widget.CompoundButton;
 
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ActivityMainBinding;
-import com.karrel.bluetoothsample.etc.RxBluetoothConnectEvent;
+import com.karrel.bluetoothsample.event.RxBluetoothConnectEvent;
+import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
 import com.karrel.bluetoothsample.model.ReadDataItem;
 import com.karrel.bluetoothsample.presenter.MainPresenter;
 import com.karrel.bluetoothsample.presenter.MainPresenterImpl;
 import com.karrel.bluetoothsample.view.adapter.ReadDataAdapter;
+import com.karrel.bluetoothsample.view.adapter.WriteDataAdapter;
 import com.karrel.mylibrary.RLog;
+
+import java.util.List;
 
 import rx.functions.Action1;
 
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     private ActivityMainBinding binding;
     private MainPresenter presenter;
     private ReadDataAdapter readDataAdapter;
+    private WriteDataAdapter writeDataAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,15 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         setupReadList();
         setupTopButtons();
         setupSendButton();
+        setupWriteView();
+    }
+
+    private void setupWriteView() {
+        writeDataAdapter = new WriteDataAdapter();
+        binding.writeView.setLayoutManager(new LinearLayoutManager(this));
+        binding.writeView.setAdapter(writeDataAdapter);
+
+        presenter.loadWriteButtonData();
     }
 
     private void setupSendButton() {
@@ -147,6 +161,16 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     @Override
     public void showWriteLayout() {
         binding.writeLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setButtonWriteData(List<ButtonWriteDataItem> writeDataItems) {
+        writeDataAdapter.setData(writeDataItems);
+    }
+
+    @Override
+    public void startWriteItemActivity() {
+        startActivity(new Intent(this, WriteItemActivity.class));
     }
 
     private void addLog(String message) {

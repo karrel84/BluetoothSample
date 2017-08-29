@@ -12,7 +12,7 @@ import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ActivityDeviceListBinding;
-import com.karrel.bluetoothsample.etc.RxBluetoothConnectEvent;
+import com.karrel.bluetoothsample.event.RxBluetoothConnectEvent;
 import com.karrel.bluetoothsample.model.BluetoothItem;
 import com.karrel.bluetoothsample.presenter.DeviceListPresenter;
 import com.karrel.bluetoothsample.presenter.DeviceListPresenterImpl;

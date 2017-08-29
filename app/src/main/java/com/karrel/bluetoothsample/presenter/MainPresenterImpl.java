@@ -6,15 +6,22 @@ import android.os.Message;
 
 import com.karrel.bluetoothsample.bluetooth.BluetoothChatService;
 import com.karrel.bluetoothsample.etc.Constants;
+import com.karrel.bluetoothsample.event.RxWriteButtonEvent;
+import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
 import com.karrel.bluetoothsample.model.ReadDataItem;
+import com.karrel.bluetoothsample.model.RxAddWriteItem;
 import com.karrel.bluetoothsample.model.WriteDataItem;
 import com.karrel.bluetoothsample.util.ByteConverter;
 import com.karrel.mylibrary.RLog;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
+
+import rx.functions.Action1;
 
 /**
  * Created by Rell on 2017. 8. 24..
@@ -32,6 +39,20 @@ public class MainPresenterImpl implements MainPresenter {
 
     public MainPresenterImpl(MainPresenter.View view) {
         this.view = view;
+        setupAddWriteButtonEvent();
+    }
+
+    /**
+     * Rx event bus 를 통해서 버튼추가 이벤트를 전달 받는다.
+     */
+    private void setupAddWriteButtonEvent() {
+        RxWriteButtonEvent.getInstance().getObservable()
+                .subscribe(new Action1<RxAddWriteItem>() {
+                    @Override
+                    public void call(RxAddWriteItem rxAddWriteItem) {
+                        view.startWriteItemActivity();
+                    }
+                });
     }
 
     @Override
@@ -99,6 +120,14 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void clickSendButton() {
         view.showWriteLayout();
+    }
+
+    @Override
+    public void loadWriteButtonData() {
+        // todo 디비에서 저장된 데이터들을 뷰에다 넘겨줘야한다.
+
+        List<ButtonWriteDataItem> writeDataItems = new ArrayList<>();
+        view.setButtonWriteData(writeDataItems);
     }
 
 

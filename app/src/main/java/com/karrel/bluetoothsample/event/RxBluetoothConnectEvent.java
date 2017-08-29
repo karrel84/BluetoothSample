@@ -1,4 +1,4 @@
-package com.karrel.bluetoothsample.etc;
+package com.karrel.bluetoothsample.event;
 
 import android.bluetooth.BluetoothDevice;
 

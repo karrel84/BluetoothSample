@@ -7,6 +7,7 @@ import java.util.List;
  */
 
 public class WriteDataItem extends ReadDataItem {
+
     public WriteDataItem(List<String> list) {
         super(list);
     }

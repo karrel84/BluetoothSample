@@ -3,7 +3,7 @@ package com.karrel.bluetoothsample.view.adapter.viewholder;
 import android.view.View;
 
 import com.karrel.bluetoothsample.databinding.ItemPairedHolderBinding;
-import com.karrel.bluetoothsample.etc.RxBluetoothConnectEvent;
+import com.karrel.bluetoothsample.event.RxBluetoothConnectEvent;
 import com.karrel.bluetoothsample.model.BluetoothItem;
 
 /**
