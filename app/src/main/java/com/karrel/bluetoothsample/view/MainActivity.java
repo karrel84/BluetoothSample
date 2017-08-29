@@ -6,7 +6,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -111,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     public void readMessage(ReadDataItem item) {
         ReadDataAdapter.addItem(item);
         RLog.e("readMessage : " + item.list);
+        binding.readList.smoothScrollToPosition(0);
     }
 
     private void addLog(String message) {

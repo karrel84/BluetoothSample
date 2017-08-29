@@ -54,6 +54,10 @@ public class ByteBoxView extends View {
         itemSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, itemSize, getResources().getDisplayMetrics());
     }
 
+    public void setCountColor(int resColor) {
+        countTextColor = ContextCompat.getColor(getContext(), resColor);
+        countBoxColor = ContextCompat.getColor(getContext(), resColor);
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {

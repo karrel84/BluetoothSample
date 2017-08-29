@@ -43,7 +43,7 @@ public class ReadDataAdapter extends RecyclerView.Adapter<ReadDataHolder> {
     }
 
     public void addItem(ReadDataItem item) {
-        list.add(item);
-        notifyItemRangeInserted(list.size() - 1, 1);
+        list.add(0, item);
+        notifyItemRangeInserted(0, 1);
     }
 }

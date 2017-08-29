@@ -7,6 +7,7 @@ import android.os.Message;
 import com.karrel.bluetoothsample.bluetooth.BluetoothChatService;
 import com.karrel.bluetoothsample.etc.Constants;
 import com.karrel.bluetoothsample.model.ReadDataItem;
+import com.karrel.bluetoothsample.model.WriteDataItem;
 import com.karrel.bluetoothsample.util.ByteConverter;
 import com.karrel.mylibrary.RLog;
 
