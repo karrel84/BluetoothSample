@@ -72,7 +72,7 @@ public class BluetoothChatService {
     /**
      * Constructor. Prepares a new BluetoothChat session.
      *
-     * @param handler A Handler to send messages back to the UI Activity
+     * @param handler A Handler to send messages byte_box to the UI Activity
      */
     public BluetoothChatService(Handler handler) {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -198,7 +198,7 @@ public class BluetoothChatService {
         mConnectedThread = new ConnectedThread(socket, socketType);
         mConnectedThread.start();
 
-        // Send the name of the connected device back to the UI Activity
+        // Send the name of the connected device byte_box to the UI Activity
         Message msg = mHandler.obtainMessage(Constants.MESSAGE_DEVICE_NAME);
         Bundle bundle = new Bundle();
         bundle.putString(Constants.DEVICE_NAME, device.getName());
@@ -260,7 +260,7 @@ public class BluetoothChatService {
      * Indicate that the connection attempt failed and notify the UI Activity.
      */
     private void connectionFailed() {
-        // Send a failure message back to the Activity
+        // Send a failure message byte_box to the Activity
         Message msg = mHandler.obtainMessage(Constants.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
         bundle.putString(Constants.TOAST, "Unable to connect device");
@@ -279,7 +279,7 @@ public class BluetoothChatService {
      * Indicate that the connection was lost and notify the UI Activity.
      */
     private void connectionLost() {
-        // Send a failure message back to the Activity
+        // Send a failure message byte_box to the Activity
         Message msg = mHandler.obtainMessage(Constants.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
         bundle.putString(Constants.TOAST, "Device connection was lost");
@@ -513,7 +513,7 @@ public class BluetoothChatService {
             try {
                 mmOutStream.write(buffer);
 
-                // Share the sent message back to the UI Activity
+                // Share the sent message byte_box to the UI Activity
                 mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer)
                         .sendToTarget();
             } catch (IOException e) {

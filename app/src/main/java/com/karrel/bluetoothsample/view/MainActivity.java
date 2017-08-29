@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ActivityMainBinding;
 import com.karrel.bluetoothsample.etc.RxBluetoothConnectEvent;
+import com.karrel.bluetoothsample.model.ReadDataItem;
 import com.karrel.bluetoothsample.presenter.MainPresenter;
 import com.karrel.bluetoothsample.presenter.MainPresenterImpl;
+import com.karrel.bluetoothsample.view.adapter.ReadDataAdapter;
 import com.karrel.mylibrary.RLog;
 
 import rx.functions.Action1;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     private ActivityMainBinding binding;
     private MainPresenter presenter;
+    private ReadDataAdapter ReadDataAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,13 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
         setupRxEvent();
 
+        setupReadList();
+    }
+
+    private void setupReadList() {
+        ReadDataAdapter = new ReadDataAdapter();
+        binding.readList.setLayoutManager(new LinearLayoutManager(this));
+        binding.readList.setAdapter(ReadDataAdapter);
     }
 
     @Override
@@ -91,9 +102,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     @Override
-    public void readMessage(String readMessage) {
-        RLog.e("readMessage : " + readMessage);
-        addLog("readMessage : " + readMessage);
+    public void readMessage(ReadDataItem item) {
+        ReadDataAdapter.addItem(item);
+        RLog.e("readMessage : " + item.queue);
     }
 
     private void addLog(String message) {

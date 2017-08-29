@@ -7,4 +7,7 @@
     <dimen name="h5">12sp</dimen>
     <dimen name="h6">10sp</dimen>
 
+
+    <!-- byte layout size -->
+    <dimen name="byte_box_size">20dp</dimen>
 </resources>

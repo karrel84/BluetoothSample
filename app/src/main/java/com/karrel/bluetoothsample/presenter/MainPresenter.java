@@ -2,6 +2,10 @@ package com.karrel.bluetoothsample.presenter;
 
 import android.bluetooth.BluetoothDevice;
 
+import com.karrel.bluetoothsample.model.ReadDataItem;
+
+import java.util.Queue;
+
 /**
  * Created by Rell on 2017. 8. 24..
  */
@@ -21,6 +25,6 @@ public interface MainPresenter {
 
         void setSatus(String s);
 
-        void readMessage(String readMessage);
+        void readMessage(ReadDataItem readMessage);
     }
 }

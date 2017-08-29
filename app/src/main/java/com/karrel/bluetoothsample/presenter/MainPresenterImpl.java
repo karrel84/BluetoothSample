@@ -6,7 +6,12 @@ import android.os.Message;
 
 import com.karrel.bluetoothsample.bluetooth.BluetoothChatService;
 import com.karrel.bluetoothsample.etc.Constants;
+import com.karrel.bluetoothsample.model.ReadDataItem;
+import com.karrel.bluetoothsample.util.ByteConverter;
 import com.karrel.mylibrary.RLog;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 /**
  * Created by Rell on 2017. 8. 24..
@@ -78,7 +83,7 @@ public class MainPresenterImpl implements MainPresenter {
 
 
     /**
-     * The Handler that gets information back from the BluetoothChatService
+     * The Handler that gets information byte_box from the BluetoothChatService
      */
     private final Handler mHandler = new Handler() {
         @Override
@@ -109,10 +114,10 @@ public class MainPresenterImpl implements MainPresenter {
                     break;
                 case Constants.MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
-                    // construct a string from the valid bytes in the buffer
-                    String readMessage = new String(readBuf, 0, msg.arg1);
-                    view.readMessage(readMessage);
-                    RLog.d("readMessage : " + readMessage);
+                    Queue<String> queue = createByteQueue(readBuf);
+                    ReadDataItem readDataItem = new ReadDataItem(queue);
+                    view.readMessage(readDataItem);
+//                    RLog.d("readMessage : " + readMessage);
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     // save the connected device's name
@@ -125,4 +130,20 @@ public class MainPresenterImpl implements MainPresenter {
             }
         }
     };
+
+    private Queue<String> createByteQueue(byte[] readBuf) {
+        // construct a string from the valid bytes in the buffer
+        String readMessage = ByteConverter.byteArrayToHexString(readBuf);
+        // 뒤에 0은 모두 지운다.
+        readMessage = readMessage.replaceAll("0*$", "");
+
+        byte[] bytes = ByteConverter.hexToByteArray(readMessage);
+
+        Queue<String> queue = new ArrayDeque<>();
+        for (byte b : bytes) {
+            queue.add(ByteConverter.byteToHex(b));
+        }
+
+        return queue;
+    }
 }

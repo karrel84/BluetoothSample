@@ -37,4 +37,18 @@
         <item name="android:textColor">@color/normalTextColor2</item>
     </style>
 
+    <style name="baseText.byteBox">
+        <item name="android:textSize">@dimen/h5</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/byte_box</item>
+    </style>
+
+    <style name="baseText.byteContent">
+        <item name="android:background">@drawable/byte_content_box</item>
+        <item name="android:textSize">@dimen/h5</item>
+        <item name="android:textColor">@color/normalTextColor</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>
