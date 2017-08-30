@@ -2,7 +2,7 @@ package com.karrel.bluetoothsample.view.adapter.viewholder;
 
 import android.view.View;
 
-import com.karrel.bluetoothsample.databinding.ItemWriteViewFooterBinding;
+import com.karrel.bluetoothsample.databinding.ItemProtocolViewFooterBinding;
 import com.karrel.bluetoothsample.event.RxWriteButtonEvent;
 
 /**
@@ -11,9 +11,9 @@ import com.karrel.bluetoothsample.event.RxWriteButtonEvent;
 
 public class ProtocolViewFooterHolder extends ProtocolViewHolder {
 
-    private ItemWriteViewFooterBinding binding;
+    private ItemProtocolViewFooterBinding binding;
 
-    public ProtocolViewFooterHolder(ItemWriteViewFooterBinding binding) {
+    public ProtocolViewFooterHolder(ItemProtocolViewFooterBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
 

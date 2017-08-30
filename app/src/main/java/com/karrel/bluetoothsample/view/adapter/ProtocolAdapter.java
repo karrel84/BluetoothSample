@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.karrel.bluetoothsample.R;
-import com.karrel.bluetoothsample.databinding.ItemWriteViewBinding;
-import com.karrel.bluetoothsample.databinding.ItemWriteViewFooterBinding;
+import com.karrel.bluetoothsample.databinding.ItemProtocolViewBinding;
+import com.karrel.bluetoothsample.databinding.ItemProtocolViewFooterBinding;
 import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
 import com.karrel.bluetoothsample.view.adapter.viewholder.ProtocolViewContentHolder;
 import com.karrel.bluetoothsample.view.adapter.viewholder.ProtocolViewFooterHolder;
@@ -28,18 +28,18 @@ public class ProtocolAdapter extends RecyclerView.Adapter<ProtocolViewHolder> {
     @Override
     public ProtocolViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_CONTENT) {
-            ItemWriteViewBinding binding =
+            ItemProtocolViewBinding binding =
                     DataBindingUtil.inflate(LayoutInflater.from(parent.getContext())
-                            , R.layout.item_write_view
+                            , R.layout.item_protocol_view
                             , parent
                             , false
                     );
             return new ProtocolViewContentHolder(binding);
         } else {
-            ItemWriteViewFooterBinding binding =
+            ItemProtocolViewFooterBinding binding =
                     DataBindingUtil
                             .inflate(LayoutInflater.from(parent.getContext())
-                                    , R.layout.item_write_view_footer
+                                    , R.layout.item_protocol_view_footer
                                     , parent
                                     , false
                             );

@@ -51,4 +51,16 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="baseText.HexCode">
+        <item name="android:background">@drawable/byte_content_box</item>
+        <item name="android:textSize">@dimen/h5</item>
+        <item name="android:textColor">@color/normalTextColor</item>
+        <item name="android:gravity">center</item>
+        <item name="android:hint">AC</item>
+        <item name="android:maxLength">2</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:text">00</item>
+    </style>
+
 </resources>

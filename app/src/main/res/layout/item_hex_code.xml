@@ -21,12 +21,9 @@
 
             <EditText
                 android:id="@+id/value1"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
@@ -44,12 +41,9 @@
 
             <EditText
                 android:id="@+id/value2"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
@@ -67,12 +61,9 @@
 
             <EditText
                 android:id="@+id/value3"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
@@ -90,12 +81,9 @@
 
             <EditText
                 android:id="@+id/value4"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
@@ -113,12 +101,9 @@
 
             <EditText
                 android:id="@+id/value5"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
@@ -141,12 +126,9 @@
 
             <EditText
                 android:id="@+id/value6"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
@@ -164,12 +146,9 @@
 
             <EditText
                 android:id="@+id/value7"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
@@ -187,12 +166,9 @@
 
             <EditText
                 android:id="@+id/value8"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
@@ -210,12 +186,9 @@
 
             <EditText
                 android:id="@+id/value9"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
@@ -233,12 +206,9 @@
 
             <EditText
                 android:id="@+id/value10"
-                style="@style/baseText.byteContent"
+                style="@style/baseText.HexCode"
                 android:layout_width="@dimen/byte_box_size"
                 android:layout_height="@dimen/byte_box_size"
-                android:maxLength="2"
-                android:maxLines="1"
-                android:singleLine="true"
                 tools:text="AC" />
         </LinearLayout>
 
