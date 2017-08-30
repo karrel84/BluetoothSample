@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
                 if (o instanceof BluetoothDevice) {
                     BluetoothDevice device = (BluetoothDevice) o;
                     RLog.e(String.format("name : %s, address : %s", device.getName(), device.getAddress()));
-                    addLog(String.format("name : %s, address : %s", device.getName(), device.getAddress()));
+                    setStutus(String.format("name : %s, address : %s", device.getName(), device.getAddress()));
                     presenter.connectBt(device);
                 }
             }
@@ -137,13 +138,13 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     @Override
     public void connectedDevice(String mConnectedDeviceName) {
         RLog.e("mConnectedDeviceName : " + mConnectedDeviceName);
-        addLog("mConnectedDeviceName : " + mConnectedDeviceName);
+        setStutus("connected : " + mConnectedDeviceName);
     }
 
     @Override
     public void setSatus(String s) {
         RLog.e("setSatus : " + s);
-        addLog("setSatus : " + s);
+        setStutus(s);
     }
 
     @Override
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     @Override
     public void scrollToTop() {
-        binding.readList.smoothScrollToPosition(0);
+        binding.readList.scrollToPosition(0);
     }
 
     @Override
@@ -195,7 +196,11 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         RLog.e("writeMessage : " + writeDataItem.list);
     }
 
-    private void addLog(String message) {
-        RLog.e(message);
+    private void setStutus(String message) {
+        RLog.e("message : " + message);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setSubtitle(message);
+        }
     }
 }

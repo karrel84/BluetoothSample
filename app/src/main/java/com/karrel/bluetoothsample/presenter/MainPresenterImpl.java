@@ -43,6 +43,7 @@ public class MainPresenterImpl implements MainPresenter {
         setupModifyProtocolEvent();
         setupRealmEvent();
         setupWriteEvent();
+        view.setSatus("not connected");
     }
 
     /**
@@ -103,6 +104,7 @@ public class MainPresenterImpl implements MainPresenter {
         if (hex.length() > 0) {
             // 뒤에 0은 모두 지운다.
             hex = hex.replaceAll("0*$", "");
+            if (hex.length() == 0) return;
 
             byte[] bytes = ByteConverter.hexToByteArray(hex);
             mChatService.write(bytes);
@@ -171,13 +173,13 @@ public class MainPresenterImpl implements MainPresenter {
                             view.connectedDevice(mConnectedDeviceName);
                             break;
                         case BluetoothChatService.STATE_CONNECTING:
-                            RLog.d("연결중...");
-                            view.setSatus("연결중...");
+                            RLog.d("connecting...");
+                            view.setSatus("connecting...");
                             break;
                         case BluetoothChatService.STATE_LISTEN:
                         case BluetoothChatService.STATE_NONE:
                             RLog.d("연결되지 않음");
-                            view.setSatus("연결되지 않음");
+                            view.setSatus("not connected");
                             break;
                     }
                     break;
