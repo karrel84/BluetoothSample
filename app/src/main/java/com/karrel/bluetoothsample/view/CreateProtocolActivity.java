@@ -75,7 +75,8 @@ public class CreateProtocolActivity extends AppCompatActivity implements CreateP
         binding.modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String name = binding.name.getText().toString();
+                presenter.modifyProtocol(name, getHexCode());
             }
         });
     }

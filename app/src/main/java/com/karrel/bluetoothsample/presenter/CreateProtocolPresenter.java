@@ -17,6 +17,8 @@ public interface CreateProtocolPresenter {
 
     void deleteProtocol();
 
+    void modifyProtocol(String name, String hexCode);
+
     interface View {
 
         void addHexLayout(int startIndex);

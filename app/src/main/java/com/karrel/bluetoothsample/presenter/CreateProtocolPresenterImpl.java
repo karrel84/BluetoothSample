@@ -67,13 +67,29 @@ public class CreateProtocolPresenterImpl implements CreateProtocolPresenter {
         view.finish();
     }
 
+    @Override
+    public void modifyProtocol(String name, String hexCode) {
+        RealmResults<Protocol> protocols = realm.where(Protocol.class).equalTo("uuid", protocol.uuid).findAll();
+        for (Protocol protocol : protocols) {
+            realm.beginTransaction();
+            protocol.name = name;
+            protocol.hex = hexCode;
+            realm.commitTransaction();
+        }
+
+        view.finish();
+    }
+
+    /**
+     * 저장된 hex 데이터를 뷰에 뿌린다
+     */
     private void setHexDataSaved() {
         String hex = protocol.hex;
 
         List<List<String>> strings2 = new ArrayList<>();
         List<String> strings = new ArrayList<>();
         strings2.add(strings);
-        for (int i = 2; i < hex.length(); i += 2) {
+        for (int i = 2; i <= hex.length(); i += 2) {
             if (strings.size() == 10) {
                 strings = new ArrayList<>();
                 strings2.add(strings);
