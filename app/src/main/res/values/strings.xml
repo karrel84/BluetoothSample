@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">bluetooth ssp</string>
+    <string name="app_name">bluetooth spp</string>
     <string name="deviceTitle">select device</string>
     <string name="writeProtocol">create protocol</string>
 </resources>
