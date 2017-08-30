@@ -55,5 +55,7 @@ public interface MainPresenter {
         void writeMessage(WriteDataItem writeDataItem);
 
         void setFixedToggleMenu(boolean fixedToggle);
+
+        void hideProtocolLayout();
     }
 }

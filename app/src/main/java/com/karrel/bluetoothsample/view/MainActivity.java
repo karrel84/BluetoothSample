@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.karrel.bluetoothsample.R;
@@ -21,8 +20,9 @@ import com.karrel.bluetoothsample.model.ReadDataItem;
 import com.karrel.bluetoothsample.model.WriteDataItem;
 import com.karrel.bluetoothsample.presenter.MainPresenter;
 import com.karrel.bluetoothsample.presenter.MainPresenterImpl;
-import com.karrel.bluetoothsample.view.adapter.ReadDataAdapter;
+import com.karrel.bluetoothsample.util.ScreenUtil;
 import com.karrel.bluetoothsample.view.adapter.ProtocolAdapter;
+import com.karrel.bluetoothsample.view.adapter.ReadDataAdapter;
 import com.karrel.mylibrary.RLog;
 
 import java.util.List;
@@ -156,7 +156,24 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     @Override
     public void showProtocolLayout() {
+        RLog.e("");
         binding.protocolLayout.setVisibility(View.VISIBLE);
+        binding.protocolLayout.setY(binding.contentPanel.getHeight());
+        final int y = binding.contentPanel.getHeight() / 2;
+        binding.protocolLayout.animate().y(y).start();
+
+        final int y2 = (int) (y - ScreenUtil.dpToPx(this, 16) - binding.sendButton.getHeight());
+        binding.sendButton.animate().y(y2).start();
+    }
+
+    @Override
+    public void hideProtocolLayout() {
+        RLog.e("");
+        final int y = binding.contentPanel.getHeight();
+        binding.protocolLayout.animate().y(y).start();
+
+        final int y2 = (int) (y - ScreenUtil.dpToPx(this, 16) - binding.sendButton.getHeight());
+        binding.sendButton.animate().y(y2).start();
     }
 
     @Override

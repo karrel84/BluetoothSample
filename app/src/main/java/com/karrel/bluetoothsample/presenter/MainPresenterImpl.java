@@ -38,6 +38,8 @@ public class MainPresenterImpl implements MainPresenter {
 
     private Realm realm = Realm.getDefaultInstance();
 
+    private boolean isShowProtocolLayout = false;
+
     public MainPresenterImpl(MainPresenter.View view) {
         this.view = view;
         setupModifyProtocolEvent();
@@ -146,7 +148,13 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void clickSendButton() {
-        view.showProtocolLayout();
+        isShowProtocolLayout = !isShowProtocolLayout;
+
+        if (isShowProtocolLayout) {
+            view.showProtocolLayout();
+        } else {
+            view.hideProtocolLayout();
+        }
     }
 
     @Override
