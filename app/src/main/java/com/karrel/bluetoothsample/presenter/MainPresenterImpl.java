@@ -34,7 +34,7 @@ public class MainPresenterImpl implements MainPresenter {
 
     private String mConnectedDeviceName = null;
 
-    private boolean fixedToggle = false;
+    private boolean fixedToggle = true;
 
     private Realm realm = Realm.getDefaultInstance();
 
@@ -140,11 +140,6 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void onCheckedChangeToggle(boolean b) {
-        fixedToggle = b;
-    }
-
-    @Override
     public void clearData() {
         view.clearData();
     }
@@ -157,6 +152,12 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void loadProtol() {
         loadProtocolItem(realm);
+    }
+
+    @Override
+    public void onCheckedChangeToggle() {
+        fixedToggle = !fixedToggle;
+        view.setFixedToggleMenu(fixedToggle);
     }
 
     /**

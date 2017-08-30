@@ -22,13 +22,13 @@ public interface MainPresenter {
 
     void stopBt();
 
-    void onCheckedChangeToggle(boolean b);
-
     void clearData();
 
     void clickSendButton();
 
     void loadProtol();
+
+    void onCheckedChangeToggle();
 
     interface View {
 
@@ -53,5 +53,7 @@ public interface MainPresenter {
         void showMessage(String s);
 
         void writeMessage(WriteDataItem writeDataItem);
+
+        void setFixedToggleMenu(boolean fixedToggle);
     }
 }

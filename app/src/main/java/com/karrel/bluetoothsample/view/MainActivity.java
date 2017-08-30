@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     private MainPresenter presenter;
     private ReadDataAdapter readDataAdapter;
     private ProtocolAdapter writeDataAdapter;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
         setupRxEvent();
         setupReadList();
-        setupTopButtons();
         setupSendButton();
         setupWriteView();
 
@@ -67,22 +67,6 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             @Override
             public void onClick(View view) {
                 presenter.clickSendButton();
-            }
-        });
-    }
-
-    private void setupTopButtons() {
-        binding.clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.clearData();
-            }
-        });
-
-        binding.fixedScroll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                presenter.onCheckedChangeToggle(b);
             }
         });
     }
@@ -107,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -116,6 +101,12 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         switch (item.getItemId()) {
             case R.id.menu_select_device:
                 startActivity(new Intent(MainActivity.this, DeviceListActivity.class));
+                return true;
+            case R.id.menu_clear_log:
+                presenter.clearData();
+                return true;
+            case R.id.menu_fixed_scroll:
+                presenter.onCheckedChangeToggle();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -194,6 +185,12 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     public void writeMessage(WriteDataItem writeDataItem) {
         readDataAdapter.addItem(writeDataItem);
         RLog.e("writeMessage : " + writeDataItem.list);
+    }
+
+    @Override
+    public void setFixedToggleMenu(boolean fixedToggle) {
+        int resMenuIcon = fixedToggle ? R.drawable.ic_vertical_align_top_white_24dp : R.drawable.ic_vertical_align_top_black_24dp;
+        menu.getItem(1).setIcon(resMenuIcon);
     }
 
     private void setStutus(String message) {

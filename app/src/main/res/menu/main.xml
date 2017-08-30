@@ -15,10 +15,28 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AppCompatResource">
+
+    <!-- clear log -->
+    <item
+        android:id="@+id/menu_clear_log"
+        android:icon="@drawable/ic_border_clear_white_24dp"
+        android:title="clear log"
+        app:showAsAction="always" />
+    <!-- fixed scroll -->
+    <item
+        android:id="@+id/menu_fixed_scroll"
+        android:icon="@drawable/ic_vertical_align_top_white_24dp"
+        android:title="fixed scroll"
+        app:showAsAction="always" />
+
+    <!-- 블루투스 선택 -->
     <item
         android:id="@+id/menu_select_device"
-        android:showAsAction="always"
-        android:title="select device" />
+        android:icon="@drawable/ic_settings_bluetooth_white_24dp"
+        android:title="select device"
+        app:showAsAction="always" />
+
 </menu>
