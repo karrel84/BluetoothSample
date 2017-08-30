@@ -7,6 +7,8 @@ import rx.subjects.PublishSubject;
 
 /**
  * Created by Rell on 2017. 8. 24..
+ * <p>
+ * 블루투스 연결요청 이벤트버스이다.
  */
 
 public class RxBluetoothConnectEvent {

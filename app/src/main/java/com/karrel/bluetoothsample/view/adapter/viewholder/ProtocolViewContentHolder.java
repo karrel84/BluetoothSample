@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.karrel.bluetoothsample.databinding.ItemProtocolViewBinding;
 import com.karrel.bluetoothsample.event.RxProtocolEvent;
+import com.karrel.bluetoothsample.event.RxWriteByteEvent;
 import com.karrel.bluetoothsample.model.Protocol;
 
 /**
@@ -21,6 +22,12 @@ public class ProtocolViewContentHolder extends ProtocolViewHolder {
     }
 
     private void setupEvent() {
+        binding.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RxWriteByteEvent.getInstance().sendEvent(data);
+            }
+        });
         binding.settting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

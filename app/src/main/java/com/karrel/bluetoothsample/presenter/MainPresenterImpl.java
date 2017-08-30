@@ -7,6 +7,7 @@ import android.os.Message;
 import com.karrel.bluetoothsample.bluetooth.BluetoothChatService;
 import com.karrel.bluetoothsample.etc.Constants;
 import com.karrel.bluetoothsample.event.RxProtocolEvent;
+import com.karrel.bluetoothsample.event.RxWriteByteEvent;
 import com.karrel.bluetoothsample.model.Protocol;
 import com.karrel.bluetoothsample.model.ReadDataItem;
 import com.karrel.bluetoothsample.util.ByteConverter;
@@ -38,14 +39,28 @@ public class MainPresenterImpl implements MainPresenter {
 
     public MainPresenterImpl(MainPresenter.View view) {
         this.view = view;
-        setupAddWriteButtonEvent();
+        setupModifyProtocolEvent();
         setupRealmEvent();
+        setupWriteEvent();
+    }
+
+    /**
+     * 프로토콜 송신을 위한 이벤트 버스를 선언한다.
+     */
+    private void setupWriteEvent() {
+        RxWriteByteEvent.getInstance().getObservable()
+                .subscribe(new Action1<Protocol>() {
+                    @Override
+                    public void call(Protocol protocol) {
+                        sendMessage(protocol.hex);
+                    }
+                });
     }
 
     /**
      * Rx event bus 를 통해서 버튼추가 이벤트를 전달 받는다.
      */
-    private void setupAddWriteButtonEvent() {
+    private void setupModifyProtocolEvent() {
         RxProtocolEvent.getInstance().getObservable()
                 .subscribe(new Action1<Protocol>() {
                     @Override
@@ -72,17 +87,25 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void sendMessage(String message) {
+    public void sendMessage(String hex) {
         // Check that we're actually connected before trying anything
+        if (mChatService == null) {
+            view.showMessage("기기와 연결되어 있지 않습니다.");
+            return;
+        }
         if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
+            view.showMessage("기기와 연결되어 있지 않습니다.");
             return;
         }
 
         // Check that there's actually something to send
-        if (message.length() > 0) {
-            // Get the message bytes and tell the BluetoothChatService to write
-            byte[] send = message.getBytes();
-            mChatService.write(send);
+        if (hex.length() > 0) {
+            // 뒤에 0은 모두 지운다.
+            hex = hex.replaceAll("0*$", "");
+
+            byte[] bytes = ByteConverter.hexToByteArray(hex);
+            mChatService.write(bytes);
+            RLog.e("write " + hex);
         }
     }
 

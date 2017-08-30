@@ -8,21 +8,20 @@ import rx.subjects.PublishSubject;
 /**
  * Created by jylee on 2017. 8. 29..
  * <p>
- * 프로토콜을 수정하기위한 이벤트 버스이다.
- * 인자로 전달되는값이 null이라면 프로토콜을 추가한다.
+ * 블루투스 기기에 api를 송신하기위한 이벤트 버스이다.
  */
 
-public class RxProtocolEvent {
-    private static RxProtocolEvent mInstance;
+public class RxWriteByteEvent {
+    private static RxWriteByteEvent mInstance;
     private PublishSubject<Protocol> mSubject;
 
-    private RxProtocolEvent() {
+    private RxWriteByteEvent() {
         mSubject = PublishSubject.create();
     }
 
-    public static RxProtocolEvent getInstance() {
+    public static RxWriteByteEvent getInstance() {
         if (mInstance == null) {
-            mInstance = new RxProtocolEvent();
+            mInstance = new RxWriteByteEvent();
         }
         return mInstance;
     }

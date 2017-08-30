@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ActivityMainBinding;
@@ -180,6 +181,11 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         Intent intent = new Intent(this, CreateProtocolActivity.class);
         intent.putExtra("protocol", protocol);
         startActivity(intent);
+    }
+
+    @Override
+    public void showMessage(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
     private void addLog(String message) {

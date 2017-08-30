@@ -48,5 +48,7 @@ public interface MainPresenter {
         void setProtocolData(List<Protocol> protocols);
 
         void startCreateProtocolActivity(Protocol protocol);
+
+        void showMessage(String s);
     }
 }
