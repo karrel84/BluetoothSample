@@ -15,6 +15,8 @@ public interface CreateProtocolPresenter {
 
     void setData(Protocol protocol);
 
+    void deleteProtocol();
+
     interface View {
 
         void addHexLayout(int startIndex);
@@ -28,5 +30,9 @@ public interface CreateProtocolPresenter {
         void enableDeleteButton();
 
         void setHexData(List<String> strings);
+
+        void enableModifyButton();
+
+        void disableSaveButton();
     }
 }

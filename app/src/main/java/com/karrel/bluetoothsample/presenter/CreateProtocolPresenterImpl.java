@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by jylee on 2017. 8. 29..
@@ -49,8 +50,21 @@ public class CreateProtocolPresenterImpl implements CreateProtocolPresenter {
         this.protocol = protocol;
         view.setName(protocol.name);
         view.enableDeleteButton();
+        view.enableModifyButton();
+        view.disableSaveButton();
         // set saved hex data
         setHexDataSaved();
+    }
+
+    @Override
+    public void deleteProtocol() {
+        RealmResults<Protocol> protocols = realm.where(Protocol.class).equalTo("uuid", protocol.uuid).findAll();
+        // 사용하기전에 아래의 메소드를 호출해야한다
+        realm.beginTransaction();
+        protocols.deleteAllFromRealm();
+        // 커밋
+        realm.commitTransaction();
+        view.finish();
     }
 
     private void setHexDataSaved() {
@@ -80,6 +94,7 @@ public class CreateProtocolPresenterImpl implements CreateProtocolPresenter {
         Protocol protocol = realm.createObject(Protocol.class);
         protocol.hex = hexCode;
         protocol.name = name;
+        protocol.uuid = String.valueOf(System.currentTimeMillis());
         realm.commitTransaction();
     }
 }

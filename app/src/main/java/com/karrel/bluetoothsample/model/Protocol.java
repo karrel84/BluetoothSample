@@ -12,6 +12,7 @@ import io.realm.RealmObject;
 public class Protocol extends RealmObject implements Parcelable {
     public String name;
     public String hex;
+    public String uuid;
 
     public Protocol() {
 
@@ -20,6 +21,7 @@ public class Protocol extends RealmObject implements Parcelable {
     protected Protocol(Parcel in) {
         name = in.readString();
         hex = in.readString();
+        uuid = in.readString();
     }
 
     public static final Creator<Protocol> CREATOR = new Creator<Protocol>() {
@@ -35,14 +37,6 @@ public class Protocol extends RealmObject implements Parcelable {
     };
 
     @Override
-    public String toString() {
-        return "Protocol{" +
-                "hex='" + hex + '\'' +
-                ", name='" + name + '\'' +
-                "} " + super.toString();
-    }
-
-    @Override
     public int describeContents() {
         return 0;
     }
@@ -51,5 +45,15 @@ public class Protocol extends RealmObject implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
         parcel.writeString(hex);
+        parcel.writeString(uuid);
+    }
+
+    @Override
+    public String toString() {
+        return "Protocol{" +
+                "hex='" + hex + '\'' +
+                ", name='" + name + '\'' +
+                ", uuid='" + uuid + '\'' +
+                "} " + super.toString();
     }
 }

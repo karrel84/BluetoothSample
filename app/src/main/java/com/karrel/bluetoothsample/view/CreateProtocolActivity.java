@@ -66,6 +66,18 @@ public class CreateProtocolActivity extends AppCompatActivity implements CreateP
                 presenter.saveProtocol(name, getHexCode());
             }
         });
+        binding.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.deleteProtocol();
+            }
+        });
+        binding.modify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
@@ -99,6 +111,16 @@ public class CreateProtocolActivity extends AppCompatActivity implements CreateP
     @Override
     public void setHexData(List<String> strings) {
         hexCodeViewList.get(hexCodeViewList.size() - 1).setHexData(strings);
+    }
+
+    @Override
+    public void enableModifyButton() {
+        binding.modify.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void disableSaveButton() {
+        binding.save.setVisibility(View.GONE);
     }
 
     public String getHexCode() {
