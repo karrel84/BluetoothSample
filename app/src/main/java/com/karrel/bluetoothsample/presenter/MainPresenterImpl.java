@@ -6,16 +6,18 @@ import android.os.Message;
 
 import com.karrel.bluetoothsample.bluetooth.BluetoothChatService;
 import com.karrel.bluetoothsample.etc.Constants;
-import com.karrel.bluetoothsample.event.RxWriteButtonEvent;
-import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
+import com.karrel.bluetoothsample.event.RxProtocolEvent;
+import com.karrel.bluetoothsample.model.Protocol;
 import com.karrel.bluetoothsample.model.ReadDataItem;
-import com.karrel.bluetoothsample.model.ProtocolItem;
 import com.karrel.bluetoothsample.util.ByteConverter;
 import com.karrel.mylibrary.RLog;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 import rx.functions.Action1;
 
 /**
@@ -32,20 +34,29 @@ public class MainPresenterImpl implements MainPresenter {
 
     private boolean fixedToggle = false;
 
+    private Realm realm = Realm.getDefaultInstance();
+
     public MainPresenterImpl(MainPresenter.View view) {
         this.view = view;
         setupAddWriteButtonEvent();
+        setupRealmEvent();
     }
 
     /**
      * Rx event bus 를 통해서 버튼추가 이벤트를 전달 받는다.
      */
     private void setupAddWriteButtonEvent() {
-        RxWriteButtonEvent.getInstance().getObservable()
-                .subscribe(new Action1<ProtocolItem>() {
+        RxProtocolEvent.getInstance().getObservable()
+                .subscribe(new Action1<Protocol>() {
                     @Override
-                    public void call(ProtocolItem rxAddWriteItem) {
-                        view.startWriteItemActivity();
+                    public void call(Protocol protocol) {
+                        // 전달된 객체가 없으면 아이템 추가로 간주하는데 이게 맞는건지는 모르겟군;
+                        if (protocol == null) {
+                            view.startCreateProtocolActivity();
+                        } else {
+                            RLog.d(String.format("setting protocol : " + protocol));
+                            view.startCreateProtocolActivity(protocol);
+                        }
                     }
                 });
     }
@@ -118,13 +129,9 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void loadWriteButtonData() {
-        // todo 디비에서 저장된 데이터들을 뷰에다 넘겨줘야한다.
-
-        List<ButtonWriteDataItem> writeDataItems = new ArrayList<>();
-        view.setButtonWriteData(writeDataItems);
+    public void loadProtol() {
+        loadProtocolItem(realm);
     }
-
 
     /**
      * The Handler that gets information byte_box from the BluetoothChatService
@@ -189,5 +196,23 @@ public class MainPresenterImpl implements MainPresenter {
         }
 
         return list;
+    }
+
+    private void setupRealmEvent() {
+        realm.addChangeListener(new RealmChangeListener<Realm>() {
+            @Override
+            public void onChange(Realm realm) {
+                loadProtocolItem(realm);
+            }
+        });
+    }
+
+    private void loadProtocolItem(Realm realm) {
+        RealmResults<Protocol> protocols = realm.where(Protocol.class).findAll();
+        List<Protocol> list = new ArrayList<>();
+        for (int i = 0; i < protocols.size(); i++) {
+            list.add(protocols.get(i));
+        }
+        view.setProtocolData(list);
     }
 }

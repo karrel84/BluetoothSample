@@ -14,7 +14,7 @@ import android.widget.CompoundButton;
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ActivityMainBinding;
 import com.karrel.bluetoothsample.event.RxBluetoothConnectEvent;
-import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
+import com.karrel.bluetoothsample.model.Protocol;
 import com.karrel.bluetoothsample.model.ReadDataItem;
 import com.karrel.bluetoothsample.presenter.MainPresenter;
 import com.karrel.bluetoothsample.presenter.MainPresenterImpl;
@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         setupTopButtons();
         setupSendButton();
         setupWriteView();
+
+        // load protocol
+        presenter.loadProtol();
     }
 
     private void setupWriteView() {
@@ -54,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         binding.protocolRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.protocolRecyclerView.setAdapter(writeDataAdapter);
 
-        presenter.loadWriteButtonData();
     }
 
     private void setupSendButton() {
@@ -164,13 +166,20 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     @Override
-    public void setButtonWriteData(List<ButtonWriteDataItem> writeDataItems) {
-        writeDataAdapter.setData(writeDataItems);
+    public void startCreateProtocolActivity() {
+        startActivity(new Intent(this, CreateProtocolActivity.class));
     }
 
     @Override
-    public void startWriteItemActivity() {
-        startActivity(new Intent(this, CreateProtocolActivity.class));
+    public void setProtocolData(List<Protocol> protocols) {
+        writeDataAdapter.setData(protocols);
+    }
+
+    @Override
+    public void startCreateProtocolActivity(Protocol protocol) {
+        Intent intent = new Intent(this, CreateProtocolActivity.class);
+        intent.putExtra("protocol", protocol);
+        startActivity(intent);
     }
 
     private void addLog(String message) {

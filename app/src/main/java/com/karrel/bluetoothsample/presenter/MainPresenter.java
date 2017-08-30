@@ -3,6 +3,7 @@ package com.karrel.bluetoothsample.presenter;
 import android.bluetooth.BluetoothDevice;
 
 import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
+import com.karrel.bluetoothsample.model.Protocol;
 import com.karrel.bluetoothsample.model.ReadDataItem;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public interface MainPresenter {
 
     void clickSendButton();
 
-    void loadWriteButtonData();
+    void loadProtol();
 
     interface View {
 
@@ -42,8 +43,10 @@ public interface MainPresenter {
 
         void showProtocolLayout();
 
-        void setButtonWriteData(List<ButtonWriteDataItem> writeDataItems);
+        void startCreateProtocolActivity();
 
-        void startWriteItemActivity();
+        void setProtocolData(List<Protocol> protocols);
+
+        void startCreateProtocolActivity(Protocol protocol);
     }
 }

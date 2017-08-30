@@ -6,6 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="480dp"
         android:background="@android:color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical">
 
         <TextView
@@ -105,10 +107,10 @@
                 <Button
                     android:id="@+id/delete"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
-                    android:text="delete protocol" />
+                    android:text="delete protocol"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </ScrollView>

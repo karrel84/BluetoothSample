@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ItemHexCodeBinding;
 
+import java.util.List;
+
 /**
  * Created by jylee on 2017. 8. 29..
  */
@@ -123,5 +125,41 @@ public class HexCodeView extends LinearLayout {
         }
 
         return hexCode;
+    }
+
+    public void setHexData(List<String> hexData) {
+        for (int i = 0; i < hexData.size(); i++) {
+            final String text = hexData.get(i);
+            if (i == 0) {
+                binding.value1.setText(text);
+            }
+            if (i == 1) {
+                binding.value2.setText(text);
+            }
+            if (i == 2) {
+                binding.value3.setText(text);
+            }
+            if (i == 3) {
+                binding.value4.setText(text);
+            }
+            if (i == 4) {
+                binding.value5.setText(text);
+            }
+            if (i == 5) {
+                binding.value6.setText(text);
+            }
+            if (i == 6) {
+                binding.value7.setText(text);
+            }
+            if (i == 7) {
+                binding.value8.setText(text);
+            }
+            if (i == 8) {
+                binding.value9.setText(text);
+            }
+            if (i == 9) {
+                binding.value10.setText(text);
+            }
+        }
     }
 }

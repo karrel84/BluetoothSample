@@ -4,7 +4,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/byte_box_layout_size">
+        android:layout_height="@dimen/byte_box_layout_size"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
 
         <LinearLayout

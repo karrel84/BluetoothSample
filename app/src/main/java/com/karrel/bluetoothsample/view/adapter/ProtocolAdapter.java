@@ -9,10 +9,12 @@ import com.karrel.bluetoothsample.R;
 import com.karrel.bluetoothsample.databinding.ItemProtocolViewBinding;
 import com.karrel.bluetoothsample.databinding.ItemProtocolViewFooterBinding;
 import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
+import com.karrel.bluetoothsample.model.Protocol;
 import com.karrel.bluetoothsample.view.adapter.viewholder.ProtocolViewContentHolder;
 import com.karrel.bluetoothsample.view.adapter.viewholder.ProtocolViewFooterHolder;
 import com.karrel.bluetoothsample.view.adapter.viewholder.ProtocolViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +22,7 @@ import java.util.List;
  */
 
 public class ProtocolAdapter extends RecyclerView.Adapter<ProtocolViewHolder> {
-    private List<ButtonWriteDataItem> data;
+    private List<Protocol> data = new ArrayList<>();
 
     private final int TYPE_CONTENT = 0;
     private final int TYPE_FOOTER = 1;
@@ -49,7 +51,9 @@ public class ProtocolAdapter extends RecyclerView.Adapter<ProtocolViewHolder> {
 
     @Override
     public void onBindViewHolder(ProtocolViewHolder holder, int position) {
-
+        if (position < data.size()) {
+            holder.setData(data.get(position));
+        }
     }
 
     @Override
@@ -66,8 +70,9 @@ public class ProtocolAdapter extends RecyclerView.Adapter<ProtocolViewHolder> {
         return data.size() + 1;
     }
 
-    public void setData(List<ButtonWriteDataItem> data) {
-        this.data = data;
-        notifyItemRangeInserted(0, data.size() + 1);
+    public void setData(List<Protocol> protocols) {
+        data.clear();
+        data.addAll(protocols);
+        notifyDataSetChanged();
     }
 }

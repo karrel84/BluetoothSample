@@ -3,7 +3,7 @@ package com.karrel.bluetoothsample.view.adapter.viewholder;
 import android.view.View;
 
 import com.karrel.bluetoothsample.databinding.ItemProtocolViewFooterBinding;
-import com.karrel.bluetoothsample.event.RxWriteButtonEvent;
+import com.karrel.bluetoothsample.event.RxProtocolEvent;
 
 /**
  * Created by jylee on 2017. 8. 29..
@@ -25,7 +25,7 @@ public class ProtocolViewFooterHolder extends ProtocolViewHolder {
             @Override
             public void onClick(View v) {
                 // 보내는전문을 하나 추가해야해
-                RxWriteButtonEvent.getInstance().sendEvent(null);
+                RxProtocolEvent.getInstance().sendEvent(null);
             }
         });
 
