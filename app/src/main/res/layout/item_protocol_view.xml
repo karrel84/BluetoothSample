@@ -12,14 +12,14 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="프로토콜 추가" />
+            android:text="add protocol" />
 
         <Button
             android:id="@+id/settting"
             style="@style/baseText.ItemTextNormal"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="설정" />
+            android:text="setting" />
 
     </LinearLayout>
 

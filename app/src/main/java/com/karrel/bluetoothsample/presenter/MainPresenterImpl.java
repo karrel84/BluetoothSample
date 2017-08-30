@@ -94,11 +94,11 @@ public class MainPresenterImpl implements MainPresenter {
     public void sendMessage(String hex) {
         // Check that we're actually connected before trying anything
         if (mChatService == null) {
-            view.showMessage("기기와 연결되어 있지 않습니다.");
+            view.showMessage("not connected device");
             return;
         }
         if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
-            view.showMessage("기기와 연결되어 있지 않습니다.");
+            view.showMessage("not connected device");
             return;
         }
 

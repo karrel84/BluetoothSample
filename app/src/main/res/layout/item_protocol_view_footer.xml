@@ -11,7 +11,7 @@
             style="@style/baseText.ItemTextNormal"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="프로토콜 추가" />
+            android:text="add protocol" />
 
     </LinearLayout>
 

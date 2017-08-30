@@ -60,9 +60,11 @@
                     style="@style/baseText.ItemTextNormal"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:hint="insert protocol name"
                     android:maxLength="20"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColorHint="@color/normalTextColor" />
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
