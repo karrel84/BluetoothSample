@@ -3,6 +3,8 @@ package com.karrel.bluetoothsample.etc;
 import android.app.Application;
 import android.content.Context;
 
+import com.karrel.mylibrary.RLog;
+
 import io.realm.Realm;
 
 /**
@@ -15,6 +17,7 @@ public class MyApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
 
+        RLog.setEnable(false);
         Realm.init(this);
     }
 }
