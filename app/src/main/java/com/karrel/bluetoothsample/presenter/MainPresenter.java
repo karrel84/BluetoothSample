@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import com.karrel.bluetoothsample.model.ButtonWriteDataItem;
 import com.karrel.bluetoothsample.model.Protocol;
 import com.karrel.bluetoothsample.model.ReadDataItem;
+import com.karrel.bluetoothsample.model.WriteDataItem;
 
 import java.util.List;
 
@@ -50,5 +51,7 @@ public interface MainPresenter {
         void startCreateProtocolActivity(Protocol protocol);
 
         void showMessage(String s);
+
+        void writeMessage(WriteDataItem writeDataItem);
     }
 }

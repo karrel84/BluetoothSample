@@ -98,7 +98,7 @@ public class ByteBoxView extends View {
             column++;
             offsetX++;
         }
-        resizeHeight(bottom + itemSize + offsetY);
+        resizeHeight(bottom + itemSize + offsetY  +10);
         super.onDraw(canvas);
     }
 

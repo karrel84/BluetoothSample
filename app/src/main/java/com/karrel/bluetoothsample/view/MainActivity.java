@@ -17,6 +17,7 @@ import com.karrel.bluetoothsample.databinding.ActivityMainBinding;
 import com.karrel.bluetoothsample.event.RxBluetoothConnectEvent;
 import com.karrel.bluetoothsample.model.Protocol;
 import com.karrel.bluetoothsample.model.ReadDataItem;
+import com.karrel.bluetoothsample.model.WriteDataItem;
 import com.karrel.bluetoothsample.presenter.MainPresenter;
 import com.karrel.bluetoothsample.presenter.MainPresenterImpl;
 import com.karrel.bluetoothsample.view.adapter.ReadDataAdapter;
@@ -186,6 +187,12 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     @Override
     public void showMessage(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void writeMessage(WriteDataItem writeDataItem) {
+        readDataAdapter.addItem(writeDataItem);
+        RLog.e("writeMessage : " + writeDataItem.list);
     }
 
     private void addLog(String message) {

@@ -10,6 +10,7 @@ import com.karrel.bluetoothsample.event.RxProtocolEvent;
 import com.karrel.bluetoothsample.event.RxWriteByteEvent;
 import com.karrel.bluetoothsample.model.Protocol;
 import com.karrel.bluetoothsample.model.ReadDataItem;
+import com.karrel.bluetoothsample.model.WriteDataItem;
 import com.karrel.bluetoothsample.util.ByteConverter;
 import com.karrel.mylibrary.RLog;
 
@@ -185,6 +186,11 @@ public class MainPresenterImpl implements MainPresenter {
                     // construct a string from the buffer
                     String writeMessage = new String(writeBuf);
                     RLog.d("writeMessage : " + writeMessage);
+
+                    WriteDataItem writeDataItem = new WriteDataItem(createByteList(writeBuf));
+                    view.writeMessage(writeDataItem);
+                    if (fixedToggle) view.scrollToTop();
+
                     break;
                 case Constants.MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
