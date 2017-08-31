@@ -13,6 +13,7 @@ public class Protocol extends RealmObject implements Parcelable {
     public String name;
     public String hex;
     public String uuid;
+    public boolean isChecksum;
 
     public Protocol() {
 
@@ -22,6 +23,7 @@ public class Protocol extends RealmObject implements Parcelable {
         name = in.readString();
         hex = in.readString();
         uuid = in.readString();
+        isChecksum = in.readByte() != 0;
     }
 
     public static final Creator<Protocol> CREATOR = new Creator<Protocol>() {
@@ -46,12 +48,14 @@ public class Protocol extends RealmObject implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(hex);
         parcel.writeString(uuid);
+        parcel.writeByte((byte) (isChecksum ? 1 : 0));
     }
 
     @Override
     public String toString() {
         return "Protocol{" +
                 "hex='" + hex + '\'' +
+                ", isChecksum=" + isChecksum +
                 ", name='" + name + '\'' +
                 ", uuid='" + uuid + '\'' +
                 "} " + super.toString();

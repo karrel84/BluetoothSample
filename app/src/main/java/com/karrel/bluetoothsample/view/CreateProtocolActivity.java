@@ -63,7 +63,7 @@ public class CreateProtocolActivity extends AppCompatActivity implements CreateP
             public void onClick(View view) {
                 // save protocol
                 String name = binding.name.getText().toString();
-                presenter.saveProtocol(name, getHexCode());
+                presenter.saveProtocol(name, getHexCode(), binding.checksum.isChecked());
             }
         });
         binding.delete.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class CreateProtocolActivity extends AppCompatActivity implements CreateP
             @Override
             public void onClick(View view) {
                 String name = binding.name.getText().toString();
-                presenter.modifyProtocol(name, getHexCode());
+                presenter.modifyProtocol(name, getHexCode(), binding.checksum.isChecked());
             }
         });
     }
@@ -122,6 +122,11 @@ public class CreateProtocolActivity extends AppCompatActivity implements CreateP
     @Override
     public void disableSaveButton() {
         binding.save.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setChecksum(boolean isChecksum) {
+        binding.checksum.setChecked(isChecksum);
     }
 
     public String getHexCode() {

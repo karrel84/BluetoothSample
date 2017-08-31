@@ -30,7 +30,7 @@ public class CreateProtocolPresenterImpl implements CreateProtocolPresenter {
     }
 
     @Override
-    public void saveProtocol(String name, String hexCode) {
+    public void saveProtocol(String name, String hexCode, boolean isChecksum) {
         RLog.e(hexCode);
         // 유효성체크
         if (name.isEmpty()) {
@@ -38,7 +38,7 @@ public class CreateProtocolPresenterImpl implements CreateProtocolPresenter {
             return;
         }
 
-        saveProtocolToDB(name, hexCode);
+        saveProtocolToDB(name, hexCode, isChecksum);
 
         view.finish();
     }
@@ -63,6 +63,7 @@ public class CreateProtocolPresenterImpl implements CreateProtocolPresenter {
         }
         // set saved hex data
         setHexDataSaved();
+        view.setChecksum(this.protocol.isChecksum);
     }
 
     @Override
@@ -77,12 +78,13 @@ public class CreateProtocolPresenterImpl implements CreateProtocolPresenter {
     }
 
     @Override
-    public void modifyProtocol(String name, String hexCode) {
+    public void modifyProtocol(String name, String hexCode, boolean isChecksum) {
         RealmResults<Protocol> protocols = realm.where(Protocol.class).equalTo("uuid", protocol.uuid).findAll();
         for (Protocol protocol : protocols) {
             realm.beginTransaction();
             protocol.name = name;
             protocol.hex = hexCode;
+            protocol.isChecksum = isChecksum;
             realm.commitTransaction();
         }
 
@@ -114,12 +116,13 @@ public class CreateProtocolPresenterImpl implements CreateProtocolPresenter {
         }
     }
 
-    private void saveProtocolToDB(String name, String hexCode) {
+    private void saveProtocolToDB(String name, String hexCode, boolean isChecksum) {
         realm.beginTransaction();
         Protocol protocol = realm.createObject(Protocol.class);
         protocol.hex = hexCode;
         protocol.name = name;
         protocol.uuid = String.valueOf(System.currentTimeMillis());
+        protocol.isChecksum = isChecksum;
         realm.commitTransaction();
     }
 }

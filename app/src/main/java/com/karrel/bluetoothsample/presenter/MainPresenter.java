@@ -16,7 +16,7 @@ import java.util.List;
 public interface MainPresenter {
     void connectBt(BluetoothDevice device);
 
-    void sendMessage(String message);
+    void sendMessage(String hex, boolean isChecksum);
 
     void startBt();
 

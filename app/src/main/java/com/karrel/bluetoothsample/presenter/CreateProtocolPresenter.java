@@ -11,13 +11,13 @@ import java.util.List;
 public interface CreateProtocolPresenter {
     void addHexLayout();
 
-    void saveProtocol(String name, String hexCode);
+    void saveProtocol(String name, String hexCode, boolean isChecksum);
 
     void setData(Protocol protocol);
 
     void deleteProtocol();
 
-    void modifyProtocol(String name, String hexCode);
+    void modifyProtocol(String name, String hexCode, boolean isChecksum);
 
     interface View {
 
@@ -36,5 +36,7 @@ public interface CreateProtocolPresenter {
         void enableModifyButton();
 
         void disableSaveButton();
+
+        void setChecksum(boolean isChecksum);
     }
 }

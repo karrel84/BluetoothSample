@@ -21,6 +21,7 @@ import java.util.List;
 
 public class HexCodeView extends LinearLayout {
     private ItemHexCodeBinding binding;
+    private int mHexIndex;
 
     public HexCodeView(Context context) {
         super(context);
@@ -87,6 +88,7 @@ public class HexCodeView extends LinearLayout {
     }
 
     public void setHexIndex(int hexIndex) {
+        mHexIndex = hexIndex;
         binding.number1.setText(++hexIndex + "");
         binding.number2.setText(++hexIndex + "");
         binding.number3.setText(++hexIndex + "");

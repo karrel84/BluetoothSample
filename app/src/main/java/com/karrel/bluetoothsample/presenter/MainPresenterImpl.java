@@ -56,7 +56,7 @@ public class MainPresenterImpl implements MainPresenter {
                 .subscribe(new Action1<Protocol>() {
                     @Override
                     public void call(Protocol protocol) {
-                        sendMessage(protocol.hex);
+                        sendMessage(protocol.hex, protocol.isChecksum);
                     }
                 });
     }
@@ -91,7 +91,7 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void sendMessage(String hex) {
+    public void sendMessage(String hex, boolean isChecksum) {
         // Check that we're actually connected before trying anything
         if (mChatService == null) {
             view.showMessage("not connected device");
@@ -104,9 +104,19 @@ public class MainPresenterImpl implements MainPresenter {
 
         // Check that there's actually something to send
         if (hex.length() > 0) {
+            RLog.e("hex : " + hex);
             // 뒤에 0은 모두 지운다.
             hex = hex.replaceAll("0*$", "");
             if (hex.length() == 0) return;
+            if (hex.length() % 2 == 1) {
+                hex += "0";
+            }
+            if (isChecksum) {
+                String checksum = ByteConverter.checkSum(hex);
+                RLog.e("checksum : " + checksum);
+                hex += checksum;
+            }
+            RLog.e("hex : " + hex);
 
             byte[] bytes = ByteConverter.hexToByteArray(hex);
             mChatService.write(bytes);

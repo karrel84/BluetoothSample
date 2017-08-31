@@ -93,6 +93,13 @@
                         app:layout_constraintTop_toTopOf="@+id/title2" />
                 </android.support.constraint.ConstraintLayout>
 
+                <CheckBox
+                    android:id="@+id/checksum"
+                    style="@style/baseText.ItemTextNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="checksum last byte" />
+
                 <LinearLayout
                     android:id="@+id/hexCodeLayout"
                     android:layout_width="match_parent"
