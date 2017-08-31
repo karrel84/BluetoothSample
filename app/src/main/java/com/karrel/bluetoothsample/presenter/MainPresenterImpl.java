@@ -210,7 +210,7 @@ public class MainPresenterImpl implements MainPresenter {
 
                     WriteDataItem writeDataItem = new WriteDataItem(createByteList(writeBuf));
                     view.writeMessage(writeDataItem);
-                    if (fixedToggle) view.scrollToTop();
+                    view.scrollToTop();
 
                     break;
                 case Constants.MESSAGE_READ:
