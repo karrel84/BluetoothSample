@@ -217,4 +217,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             actionBar.setSubtitle(message);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }
