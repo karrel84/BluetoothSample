@@ -45,13 +45,22 @@ public class CreateProtocolPresenterImpl implements CreateProtocolPresenter {
 
     @Override
     public void setData(Protocol protocol) {
-        if (protocol == null) return;
         RLog.d("protocol : " + protocol);
-        this.protocol = protocol;
-        view.setName(protocol.name);
-        view.enableDeleteButton();
-        view.enableModifyButton();
-        view.disableSaveButton();
+        if (protocol == null) {
+            RealmResults<Protocol> protocols = realm.where(Protocol.class).findAll();
+            if (protocols.size() > 0) {
+                this.protocol = protocols.get(protocols.size() - 1);
+                view.setName(this.protocol.name);
+            } else {
+                return;
+            }
+        } else {
+            this.protocol = protocol;
+            view.setName(protocol.name);
+            view.enableDeleteButton();
+            view.enableModifyButton();
+            view.disableSaveButton();
+        }
         // set saved hex data
         setHexDataSaved();
     }

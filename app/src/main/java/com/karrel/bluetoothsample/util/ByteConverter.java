@@ -130,4 +130,16 @@ public class ByteConverter {
     public static String integerToHex(int hexCommand) {
         return byteArrayToHexString(hexToByteArray(hexCommand));
     }
+
+    public static String checkSum(String hex) {
+        int checkSum = 0;
+        byte[] bytes = ByteConverter.hexToByteArray(hex);
+
+        for (byte b : bytes) {
+            checkSum += (0xff & b);
+        }
+
+        String checkSumHex = Integer.toHexString(checkSum & 0xFF);
+        return checkSumHex;
+    }
 }
