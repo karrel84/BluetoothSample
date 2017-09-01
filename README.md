@@ -5,4 +5,4 @@ SPP연결을 통해 테스트를 하는 앱중 원하는 기능이 있는 앱을
 
 # Screenshot
 
-![Screenshot](BluetoothSample/screen/device-2017-08-30-170655.png?raw=true)
+![Screenshot](http://cfile27.uf.tistory.com/image/99CF143359A9008901A30D)
