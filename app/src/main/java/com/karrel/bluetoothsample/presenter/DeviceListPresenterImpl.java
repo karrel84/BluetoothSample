@@ -59,6 +59,7 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
     private void createSubject() {
         devicePublishSubject = PublishSubject.create();
         devicePublishSubject
+                .onBackpressureDrop()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .distinct()
@@ -205,11 +206,14 @@ public class DeviceListPresenterImpl implements DeviceListPresenter {
                 }
 
                 private void processResult(final ScanResult result) {
-//                    RLog.d("processResult");
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        devicePublishSubject.onNext(result.getDevice());
-//                        RLog.d(String.format("device : %s", result.getDevice().getName()));
+                    try {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            devicePublishSubject.onNext(result.getDevice());
+                        }
+                    } catch (Exception e) {
+                        devicePublishSubject.onError(e);
                     }
+
                 }
             };
         }
